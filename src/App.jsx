@@ -17,7 +17,7 @@ function App() {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "0 20px",
+    
     background: "#faf1e8",
     zIndex: 1000,
         }}
