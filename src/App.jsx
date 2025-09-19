@@ -9,25 +9,24 @@ function App() {
       {/* Header/Navbar */}
       <header
         style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "100px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "0 20px",
-          background: "#f8f8f8",
-          borderBottom: "1px solid #ddd",
-          zIndex: 1000,
+              position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: "160px",    // taller header
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "0 20px",
+    background: "#faf1e8",
+    zIndex: 1000,
         }}
       >
         {/* Logo */}
         <img
           src="/Logo.png"
           alt="Logo"
-          style={{ height: "100px", objectFit: "contain" }}
+          style={{ height: "160px", objectFit: "contain" }}
         />
 
         {/* Menu button (3 dots) */}
