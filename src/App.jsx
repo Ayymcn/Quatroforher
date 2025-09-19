@@ -26,7 +26,7 @@ function App() {
         <img
           src="/Logo.png"
           alt="Logo"
-          style={{ height: "160px", objectFit: "contain" }}
+          style={{ height: "130px", objectFit: "contain" }}
         />
 
         {/* Menu button (3 dots) */}
