@@ -3,95 +3,276 @@ import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+
+  const purple = "#6b4e9b";       // main purple
+  const lightPurple = "#8b6bc3";  // hover/light version
 
   return (
     <>
       {/* Header/Navbar */}
-      <header
-        style={{
-              position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: "90px",    // taller header
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    
-    
-    zIndex: 1000,
-        }}
-      >
-        {/* Logo */}
-        <img
-          src="/Logo.png"
-          alt="Logo"
-          style={{ height: "100px", objectFit: "contain" }}
-        />
+      <header className="header">
+        <img src="/Logo.png" alt="Logo" className="logo" />
 
-        {/* Menu button (3 dots) */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            fontSize: "24px",
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          ⋮
-        </button>
+        <nav className="desktop-nav">
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/faq">FAQ</Link></li>
+            <li><Link to="/contact" className="contact-btn">Contact Us</Link></li>
+          </ul>
+        </nav>
 
-        {/* Dropdown menu */}
-        {menuOpen && (
-          <nav
-            style={{
-              position: "absolute",
-              top: "80px",
-              right: "20px",
-              background: "#fff",
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-              boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-              padding: "10px",
-            }}
-          >
-            <ul
-              style={{
-                listStyle: "none",
-                margin: 0,
-                padding: 0,
-              }}
-            >
-              <li style={{ margin: "8px 0" }}>
-                <Link to="/" onClick={() => setMenuOpen(false)}>
-                  Home
-                </Link>
-              </li>
-              <li style={{ margin: "8px 0" }}>
-                <Link to="/about" onClick={() => setMenuOpen(false)}>
-                  About
-                </Link>
-              </li>
-              <li style={{ margin: "8px 0" }}>
-                <Link to="/faq" onClick={() => setMenuOpen(false)}>
-                  FAQ
-                </Link>
-              </li>
-              <li style={{ margin: "8px 0" }}>
-                <Link to="/contact" onClick={() => setMenuOpen(false)}>
-                  Contact
-                </Link>
-              </li>
+        {/* Desktop language button */}
+        <div className="lang-container">
+          <button className="desktop-lang-btn" onClick={() => setLangOpen(!langOpen)}>
+            <img src="/icon.png" alt="Language" className="lang-icon" />
+          </button>
+          {langOpen && (
+            <ul className="lang-dropdown">
+              <li>English</li>
+              <li>French</li>
+              <li>Arabic</li>
             </ul>
-          </nav>
-        )}
+          )}
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setMenuOpen(true)}
+        >
+          ☰
+        </button>
       </header>
 
-      {/* Page Content Placeholder */}
-      <div style={{ marginTop: "100px", textAlign: "center" }}>
-        {/* Empty for now — this is where your hero section / homepage content will go */}
-      </div>
+      {/* Fullscreen Mobile Overlay Menu */}
+      {menuOpen && (
+        <div className="mobile-overlay">
+          <button className="overlay-close-btn" onClick={() => setMenuOpen(false)}>✖</button>
+
+          <ul>
+            <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
+            <li><Link to="/about" onClick={() => setMenuOpen(false)}>About Us</Link></li>
+            <li><Link to="/faq" onClick={() => setMenuOpen(false)}>FAQ</Link></li>
+            <li><Link to="/contact" className="contact-btn" onClick={() => setMenuOpen(false)}>Contact Us</Link></li>
+            <li>
+              <div className="lang-container">
+                <button className="mobile-lang-btn" onClick={() => setLangOpen(!langOpen)}>
+                  <img src="/icon.png" alt="Language" className="lang-icon" />
+                </button>
+                {langOpen && (
+                  <ul className="lang-dropdown">
+                    <li>English</li>
+                    <li>French</li>
+                    <li>Arabic</li>
+                  </ul>
+                )}
+              </div>
+            </li>
+          </ul>
+        </div>
+      )}
+
+      {/* Routes */}
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<div></div>} />
+          <Route path="/about" element={<div>About Us Page</div>} />
+          <Route path="/faq" element={<div>FAQ Page</div>} />
+          <Route path="/contact" element={<div>Contact Us Page</div>} />
+        </Routes>
+      </main>
+
+      {/* CSS */}
+      <style>{`
+        body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          background: #fff1e4;
+        }
+
+        .header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 80px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 20px;
+          background: #fff1e4;
+          z-index: 1000;
+        }
+
+        .logo { height: 60px; object-fit: contain; }
+
+        .desktop-nav ul {
+          display: flex;
+          gap: 40px;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .desktop-nav a {
+          text-decoration: none;
+          color: #6b4e9b;
+          font-weight: bold;
+          position: relative;
+          transition: all 0.3s ease;
+        }
+
+        .desktop-nav a:hover { color: #9a7ec6; }
+
+        /* Underline effect for desktop nav except Contact Us */
+        .desktop-nav a:not(.contact-btn)::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -4px;
+          width: 0;
+          height: 2px;
+          background: #6b4e9b;
+          transition: width 0.3s ease;
+        }
+        .desktop-nav a:not(.contact-btn):hover::after { width: 100%; }
+
+        /* Contact button */
+        .contact-btn {
+          background-color: ${purple};
+          color: #fff !important;
+          padding: 8px 16px;
+          border-radius: 6px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          transition: all 0.3s ease;
+        }
+        .contact-btn:hover {
+          background-color: ${lightPurple};
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+          transform: translateY(-2px);
+        }
+
+        .desktop-lang-btn, .mobile-lang-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          transition: transform 0.2s ease;
+        }
+
+        .desktop-lang-btn:hover, .mobile-lang-btn:hover { transform: scale(1.2); }
+
+        .lang-container { position: relative; display: inline-block; }
+
+        .lang-icon { width: 28px; height: 28px; }
+
+        /* Language dropdown */
+        .lang-dropdown {
+          position: absolute;
+          top: 40px; /* just below icon */
+          right: 0;
+          background: #fff;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          list-style: none;
+          padding: 5px 0;
+          margin: 0;
+          width: 100px;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+          z-index: 3000;
+        }
+        .lang-dropdown li {
+          padding: 6px 12px;
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        .lang-dropdown li:hover {
+          background: ${lightPurple};
+          color: #fff;
+        }
+
+        .mobile-menu-btn {
+          display: none;
+          font-size: 28px;
+          color: ${purple};
+          background: none;
+          border: none;
+          cursor: pointer;
+          z-index: 1001;
+        }
+
+        .mobile-overlay {
+          position: fixed;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: #fff1e4;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 2000;
+          animation: fadeIn 0.4s ease;
+        }
+
+        .overlay-close-btn {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          font-size: 36px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          color: ${purple};
+          transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .overlay-close-btn:hover { transform: scale(1.2); color: ${lightPurple}; }
+
+        .mobile-overlay ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          text-align: center;
+        }
+
+        .mobile-overlay li { margin: 20px 0; }
+
+        .mobile-overlay a, .mobile-lang-btn {
+          font-size: 28px;
+          text-decoration: none;
+          color: #6b4e9b;
+          font-weight: bold;
+          transition: all 0.3s ease;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        .mobile-overlay .contact-btn {
+          background-color: ${purple};
+          color: #fff !important;
+          padding: 8px 16px;
+          border-radius: 6px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .mobile-overlay .contact-btn:hover {
+          background-color: ${lightPurple};
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+          transform: translateY(-2px);
+        }
+
+        .mobile-overlay a:hover, .mobile-lang-btn:hover { color: ${lightPurple}; transform: scale(1.1); }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .main-content { padding-top: 100px; text-align: center; }
+
+        @media (max-width: 768px) {
+          .desktop-nav { display: none; }
+          .desktop-lang-btn { display: none; }
+          .mobile-menu-btn { display: block; }
+        }
+      `}</style>
     </>
   );
 }
