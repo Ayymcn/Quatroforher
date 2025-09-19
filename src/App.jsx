@@ -13,7 +13,7 @@ function App() {
     top: 0,
     left: 0,
     right: 0,
-    height: "160px",    // taller header
+    height: "90px",    // taller header
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -26,7 +26,7 @@ function App() {
         <img
           src="/Logo.png"
           alt="Logo"
-          style={{ height: "130px", objectFit: "contain" }}
+          style={{ height: "100px", objectFit: "contain" }}
         />
 
         {/* Menu button (3 dots) */}
