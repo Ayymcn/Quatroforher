@@ -87,24 +87,53 @@ function App() {
       {/* CSS */}
       <style>{`
         body {
-          margin: 0;
-          font-family: Arial, sans-serif;
-          background: #fff1e4;
-        }
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  background-color: #fff1e4;
+  position: relative;
+  overflow-x: hidden;
+}
 
-        .header {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 80px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0 20px;
-          background: #fff1e4;
-          z-index: 1000;
-        }
+/* Soft moving blobs background */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(107,78,155,0.08) 0%, transparent 60%),
+              radial-gradient(circle, rgba(139,107,195,0.06) 0%, transparent 60%),
+              radial-gradient(circle, rgba(107,78,155,0.05) 0%, transparent 60%);
+  background-repeat: repeat;
+  background-size: 600px 600px, 800px 800px, 1000px 1000px;
+  animation: moveBlobs 60s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveBlobs {
+  0% { transform: translate(0,0) scale(1); }
+  25% { transform: translate(-50px,30px) scale(1.05); }
+  50% { transform: translate(20px,-40px) scale(0.95); }
+  75% { transform: translate(-30px,50px) scale(1.02); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #fff1e4; /* Flat, no animation */
+  box-shadow: none;
+  z-index: 1000;
+}
+
 
         .logo { height: 60px; object-fit: contain; }
 
@@ -118,15 +147,14 @@ function App() {
 
         .desktop-nav a {
           text-decoration: none;
-          color: #6b4e9b;
+          color: ${purple};
           font-weight: bold;
           position: relative;
           transition: all 0.3s ease;
         }
 
-        .desktop-nav a:hover { color: #9a7ec6; }
+        .desktop-nav a:hover { color: ${lightPurple}; }
 
-        /* Underline effect for desktop nav except Contact Us */
         .desktop-nav a:not(.contact-btn)::after {
           content: "";
           position: absolute;
@@ -134,12 +162,11 @@ function App() {
           bottom: -4px;
           width: 0;
           height: 2px;
-          background: #6b4e9b;
+          background: ${purple};
           transition: width 0.3s ease;
         }
         .desktop-nav a:not(.contact-btn):hover::after { width: 100%; }
 
-        /* Contact button */
         .contact-btn {
           background-color: ${purple};
           color: #fff !important;
@@ -161,17 +188,15 @@ function App() {
           padding: 0;
           transition: transform 0.2s ease;
         }
-
         .desktop-lang-btn:hover, .mobile-lang-btn:hover { transform: scale(1.2); }
 
         .lang-container { position: relative; display: inline-block; }
 
         .lang-icon { width: 28px; height: 28px; }
 
-        /* Language dropdown */
         .lang-dropdown {
           position: absolute;
-          top: 40px; /* just below icon */
+          top: 40px;
           right: 0;
           background: #fff;
           border: 1px solid #ccc;
@@ -189,7 +214,7 @@ function App() {
           transition: background 0.2s ease;
         }
         .lang-dropdown li:hover {
-          background: ${lightPurple};
+          background-color: ${lightPurple};
           color: #fff;
         }
 
@@ -234,13 +259,12 @@ function App() {
           margin: 0;
           text-align: center;
         }
-
         .mobile-overlay li { margin: 20px 0; }
 
         .mobile-overlay a, .mobile-lang-btn {
           font-size: 28px;
           text-decoration: none;
-          color: #6b4e9b;
+          color: ${purple};
           font-weight: bold;
           transition: all 0.3s ease;
           background: none;
