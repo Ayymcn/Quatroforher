@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import FAQ from "./pages/FAQ";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
 
-  const purple = "#6b4e9b";       // main purple
-  const lightPurple = "#8b6bc3";  // hover/light version
+  const purple = "#6b4e9b";
+  const lightPurple = "#8b6bc3";
 
   return (
     <>
+      {/* Animated Background Wrapper */}
+      <div className="animated-background-wrapper"></div>
+      
       {/* Header/Navbar */}
       <header className="header">
         <img src="/Logo.png" alt="Logo" className="logo" />
@@ -79,7 +83,7 @@ function App() {
         <Routes>
           <Route path="/" element={<div></div>} />
           <Route path="/about" element={<div>About Us Page</div>} />
-          <Route path="/faq" element={<div>FAQ Page</div>} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<div>Contact Us Page</div>} />
         </Routes>
       </main>
@@ -87,53 +91,43 @@ function App() {
       {/* CSS */}
       <style>{`
         body {
-  margin: 0;
-  font-family: "Times New Roman", Times, serif;
-  background-color: #fff1e4;
-  position: relative;
-  overflow-x: hidden;
-}
+          margin: 0;
+          font-family: "Times New Roman", Times, serif;
+          background-color: #fdf5e6;
+        }
 
-/* Soft moving blobs background */
-body::before {
-  content: "";
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(107,78,155,0.08) 0%, transparent 60%),
-              radial-gradient(circle, rgba(139,107,195,0.06) 0%, transparent 60%),
-              radial-gradient(circle, rgba(107,78,155,0.05) 0%, transparent 60%);
-  background-repeat: repeat;
-  background-size: 600px 600px, 800px 800px, 1000px 1000px;
-  animation: moveBlobs 60s linear infinite;
-  z-index: -1;
-}
+        .animated-background-wrapper {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          overflow: hidden;
+          z-index: -1;
+          background: radial-gradient(circle at 50% 50%, rgba(107, 78, 155, 0.1), transparent);
+          background-size: 150% 150%;
+          animation: gentlePulse 45s ease-in-out infinite alternate;
+        }
 
-@keyframes moveBlobs {
-  0% { transform: translate(0,0) scale(1); }
-  25% { transform: translate(-50px,30px) scale(1.05); }
-  50% { transform: translate(20px,-40px) scale(0.95); }
-  75% { transform: translate(-30px,50px) scale(1.02); }
-  100% { transform: translate(0,0) scale(1); }
-}
+        @keyframes gentlePulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  background-color: #fff1e4; /* Flat, no animation */
-  box-shadow: none;
-  z-index: 1000;
-}
-
+        .header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 80px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 20px;
+          background-color: #fff1e4;
+          box-shadow: none;
+          z-index: 1000;
+        }
 
         .logo { height: 60px; object-fit: contain; }
 
@@ -152,7 +146,6 @@ body::before {
           position: relative;
           transition: all 0.3s ease;
         }
-
         .desktop-nav a:hover { color: ${lightPurple}; }
 
         .desktop-nav a:not(.contact-btn)::after {
