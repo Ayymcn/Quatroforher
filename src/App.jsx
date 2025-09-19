@@ -18,7 +18,7 @@ function App() {
     justifyContent: "space-between",
     alignItems: "center",
     
-    background: "#faf1e8",
+    
     zIndex: 1000,
         }}
       >
