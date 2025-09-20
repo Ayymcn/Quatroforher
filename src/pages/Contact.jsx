@@ -13,6 +13,7 @@ function Contact() {
 
   return (
     <div className="contact-page-container">
+      {/* 1. Get in Touch Header */}
       <div className="contact-header-section">
         <h1 className="contact-heading">Get in Touch</h1>
         <p className="contact-paragraph">
@@ -20,59 +21,9 @@ function Contact() {
         </p>
       </div>
 
-      <div className="contact-content-card">
-        {/* Left Side: Contact Info & Socials */}
-        <div className="contact-info-section">
-          <h2>Contact Information</h2>
-          <p className="info-intro-paragraph">
-            We are always ready to assist you. Feel free to reach out to us through any of the following channels.
-          </p>
-          <div className="contact-detail">
-            <FaEnvelope className="contact-icon" />
-            <div className="detail-text">
-              <h4>Email Address</h4>
-              <p>
-                <a href="mailto:quatroforher@gmail.com" className="email-link">
-                  quatroforher@gmail.com <FaArrowRight style={{ marginLeft: '5px', fontSize: '0.8rem' }} />
-                </a>
-              </p>
-            </div>
-          </div>
-          <div className="contact-detail">
-            <FaMapMarkerAlt className="contact-icon" />
-            <div className="detail-text">
-              <h4>Location</h4>
-              <p>Algiers, Algeria</p>
-            </div>
-          </div>
-
-          <div className="follow-us-section">
-            <h4 style={{ color: darkPurple, marginBottom: '5px' }}>Follow Our Journey</h4>
-            <p className="follow-us-paragraph">
-              Stay connected and get the latest updates on our products, news, and more by following us on social media.
-            </p>
-          </div>
-
-          <div className="social-icons-footer">
-            <a 
-              href="https://www.instagram.com/quatro_for_her/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Visit our Instagram page"
-            >
-              <FaInstagram className="social-icon" />
-            </a>
-            <a 
-              href="mailto:quatroforher@gmail.com"
-              aria-label="Send us an email"
-            >
-              <FaEnvelope className="social-icon" />
-            </a>
-          </div>
-        </div>
-
-        {/* Right Side: Message Form */}
-        <div className="message-form-section">
+      {/* 2. Send Us a Message Section */}
+      <div className="message-section-full-width">
+        <div className="message-form-container">
           <h2>Send Us a Message</h2>
           <p className="message-intro-paragraph">
             Leave us a message, and we'll get back to you as soon as possible!
@@ -95,6 +46,52 @@ function Contact() {
         </div>
       </div>
 
+      {/* 3. Merged Contact & Follow Our Journey Section */}
+      <div className="merged-section-full-width">
+        <div className="merged-content-container">
+          <h2>Contact & Follow Our Journey</h2>
+          <p>
+            We are always ready to assist you. Stay connected and get the latest updates on our products, news, and more by following us on social media.
+          </p>
+          <div className="social-icons-contact">
+            <a 
+              href="https://www.instagram.com/quatro_for_her/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Visit our Instagram page"
+            >
+              <FaInstagram className="social-icon" />
+            </a>
+            <a 
+              href="mailto:quatroforher@gmail.com"
+              aria-label="Send us an email"
+            >
+              <FaEnvelope className="social-icon" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Where to Find Us Section */}
+      <div className="map-section-full-width">
+        <div className="map-container">
+          <h2>Where to Find Us</h2>
+          <p className="map-intro-paragraph">
+            Find our location on the map below. We are located in the heart of Bab Ezzouar.
+          </p>
+          <iframe
+            title="Bab Ezzouar Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1599.1994640103688!2d3.1670114949500753!3d36.72147171694209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128e51921f061e87%3A0x6331902096773345!2sBab%20Ezzouar%2C%20Algiers%2C%20Algeria!5e0!3m2!1sen!2sus!4v1695420000000!5m2!1sen!2sus"
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+
       <style>{`
         .contact-page-container {
           padding-top: 0;
@@ -112,7 +109,7 @@ function Contact() {
           margin-bottom: 30px;
           max-width: 700px;
           padding: 0 20px;
-          margin-top: 50px; /* Increased margin to move it down */
+          margin-top: 50px;
         }
 
         .contact-heading {
@@ -128,122 +125,33 @@ function Contact() {
           line-height: 1.6;
         }
 
-        .contact-content-card {
-          display: flex;
-          flex-wrap: wrap;
+        .message-section-full-width {
           width: 100%;
-          max-width: none;
           background-color: #fff1e4;
-          border-radius: 0;
-          box-shadow: none;
-          overflow: hidden;
-        }
-
-        .contact-info-section,
-        .message-form-section {
-          padding: 50px;
-          flex: 1;
-          min-width: 300px;
+          padding: 50px 20px;
+          box-sizing: border-box;
           text-align: left;
         }
+        
+        .message-form-container {
+          max-width: 600px;
+          margin: 0 auto;
+        }
 
-        .contact-info-section {
-          width: 40%;
-          max-width: 400px;
-          margin-left: 0;
-          color: ${darkPurple};
-          display: flex;
-          flex-direction: column;
-          gap: 25px;
-        }
-        
-        .contact-info-section h2 {
+        .message-section-full-width h2 {
           color: ${purple};
           font-size: 1.8rem;
           margin-top: 0;
           margin-bottom: 10px;
           font-weight: 700;
-        }
-        
-        .info-intro-paragraph {
-          font-size: 1rem;
-          line-height: 1.6;
-          margin-top: 0;
-          margin-bottom: 0;
-        }
-        
-        .message-form-section {
-          background-color: transparent;
-          flex: 1.5;
-        }
-        
-        .message-form-section h2 {
-          color: ${purple};
-          font-size: 1.8rem;
-          margin-top: 0;
-          margin-bottom: 10px;
-          font-weight: 700;
+          text-align: center;
         }
 
         .message-intro-paragraph {
           font-size: 1rem;
           line-height: 1.6;
           margin-bottom: 30px;
-        }
-
-        .contact-detail {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-        }
-
-        .contact-icon {
-          font-size: 2rem;
-          color: ${lightPurple};
-        }
-
-        .detail-text h4 {
-          margin: 0;
-          font-size: 1rem;
-          font-weight: 600;
-        }
-
-        .detail-text p {
-          margin: 0;
-          font-size: 0.9rem;
-          color: #777;
-        }
-        
-        .email-link {
-          color: ${darkPurple};
-          text-decoration: underline;
-          transition: color 0.3s ease;
-          display: flex;
-          align-items: center;
-        }
-        .email-link:hover {
-          color: ${lightPurple};
-        }
-        
-        .follow-us-section {
-          margin-top: 25px;
-        }
-
-        .social-icons-footer {
-          display: flex;
-          gap: 20px;
-          margin-top: 10px;
-        }
-
-        .social-icon {
-          font-size: 2.2rem;
-          color: ${purple};
-          transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-          color: ${lightPurple};
-          transform: translateY(-3px) scale(1.1);
+          text-align: center;
         }
 
         .contact-form {
@@ -251,7 +159,7 @@ function Contact() {
           flex-direction: column;
           gap: 20px;
         }
-
+        
         .form-group {
           display: flex;
           flex-direction: column;
@@ -294,6 +202,7 @@ function Contact() {
           cursor: pointer;
           transition: all 0.3s ease;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          align-self: center;
         }
         
         .send-btn:hover {
@@ -301,10 +210,80 @@ function Contact() {
           transform: translateY(-2px);
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
+
+        .merged-section-full-width {
+          width: 100%;
+          padding: 50px 20px;
+          box-sizing: border-box;
+          background-color: transparent;
+        }
+
+        .merged-content-container {
+          max-width: 600px;
+          margin: 0 auto;
+          text-align: center;
+        }
+
+        .merged-content-container h2 {
+          color: ${purple};
+          font-size: 1.8rem;
+          font-weight: 700;
+        }
+
+        .social-icons-contact {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          margin-top: 20px;
+        }
+
+        .social-icon {
+          font-size: 2.5rem;
+          color: ${purple};
+          transition: all 0.3s ease;
+        }
         
+        .social-icon:hover {
+          color: ${lightPurple};
+          transform: translateY(-3px) scale(1.1);
+        }
+
+        .map-section-full-width {
+          width: 100%;
+          padding: 0; /* Removed padding for full width */
+          box-sizing: border-box;
+          background-color: #fdf5e6;
+        }
+
+        .map-container {
+          max-width: 100%; /* Set to full width */
+          margin: 0 auto;
+          text-align: center;
+          padding: 0 20px; /* Added padding to contain text content */
+        }
+
+        .map-container h2 {
+          color: ${purple};
+          font-size: 1.8rem;
+          font-weight: 700;
+          margin-bottom: 10px;
+        }
+
+        .map-intro-paragraph {
+          font-size: 1rem;
+          line-height: 1.6;
+          margin-bottom: 30px;
+        }
+
+        .map-container iframe {
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
         @media (max-width: 768px) {
-          .contact-content-card {
-            flex-direction: column;
+          .message-form-container, .merged-content-container, .map-container {
+            max-width: 100%;
+            padding: 0 10px;
           }
         }
       `}</style>
