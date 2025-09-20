@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const faqData = [
   {
     question: "How is Quatro For Her different from hormone replacement therapy (HRT)?",
-    answer: "Unlike HRT, Quatro For Her does not contain synthetic hormones. Instead, it combines natural plant extracts, probiotics, and supportive nutrients that work in harmony with your body. This makes it a safe alternative for women who prefer or need to avoid hormone-based treatments."
+    answer: "Unlike HRT, Quatro For Her does not contain synthetic hormones. Instead, it combines natural plant extracts, synbiotics, and supportive nutrients that work in harmony with your body. This makes it a safe alternative for women who prefer or need to avoid hormone-based treatments."
   },
   {
     question: "Is it safe if I’ve had breast cancer?",
@@ -13,14 +13,6 @@ const faqData = [
   {
     question: "How long before I feel results?",
     answer: "Every woman is unique, but many notice improvements such as reduced hot flashes, better sleep, and improved comfort within the first 3–4 weeks of consistent use. Maximum benefits are usually felt after 2–3 months as the body restores balance."
-  },
-  {
-    question: "What are the key ingredients?",
-    answer: "Quatro For Her features a blend of potent botanicals like Black Cohosh and Vitex Agnus-Castus, combined with targeted probiotics and essential vitamins like B6 and B12 to support overall hormonal wellness and energy."
-  },
-  {
-    question: "How should I take this supplement?",
-    answer: "For best results, take one capsule daily with a meal. Consistent, long-term use is recommended to allow the natural ingredients to build up in your system and provide full benefits."
   }
 ];
 
@@ -178,20 +170,7 @@ function FAQ() {
         
         .contact-cta-card:hover {
           transform: translateY(-5px);
-          box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .contact-cta-card h2 {
-          font-size: 2rem;
-          margin-bottom: 10px;
-          font-weight: 700;
-          color: #fff;
-        }
-        
-        .contact-cta-card p {
-          font-size: 1.1rem;
-          margin-bottom: 25px;
-          line-height: 1.6;
+          box-shadow: 15px 40px rgba(0,0,0,0.2);
         }
 
         .contact-link-btn {
@@ -209,7 +188,7 @@ function FAQ() {
         .contact-link-btn:hover {
           background-color: #f0eaf8;
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 6px 20px rgba(0, 0, 0, 0.2);
         }
 
         @media (max-width: 768px) {
