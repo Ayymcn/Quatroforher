@@ -1,25 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 function AboutUs() {
   const [showTitle, setShowTitle] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
+  const [isProductsVisible, setIsProductsVisible] = useState(false);
+  const [showProductsTitle, setShowProductsTitle] = useState(false);
+  const [showProduct1Image, setShowProduct1Image] = useState(false);
+  const [showProduct1Text, setShowProduct1Text] = useState(false);
+  const [showProduct2Image, setShowProduct2Image] = useState(false);
+  const [showProduct2Text, setShowProduct2Text] = useState(false);
+
+  const productsRef = useRef(null);
 
   useEffect(() => {
-    // Show the title after a brief delay
-    const titleTimer = setTimeout(() => {
-      setShowTitle(true);
-    }, 500);
+    // Initial page-load animations for the About Us intro
+    const titleTimer = setTimeout(() => setShowTitle(true), 500);
+    const introTimer = setTimeout(() => setShowIntro(true), 1000);
 
-    // Show the intro paragraph after another delay
-    const introTimer = setTimeout(() => {
-      setShowIntro(true);
-    }, 1000);
+    // Intersection Observer for the "Our Products" section
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsProductsVisible(true);
+          observer.unobserve(entry.target); // Stop observing once visible
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+
+    if (productsRef.current) {
+      observer.observe(productsRef.current);
+    }
 
     return () => {
       clearTimeout(titleTimer);
       clearTimeout(introTimer);
+      if (productsRef.current) {
+        observer.unobserve(productsRef.current);
+      }
     };
   }, []);
+
+  useEffect(() => {
+    // Sequential animations triggered by isProductsVisible state
+    if (isProductsVisible) {
+      const productsTitleTimer = setTimeout(() => setShowProductsTitle(true), 500);
+      const product1ImageTimer = setTimeout(() => setShowProduct1Image(true), 1000);
+      const product1TextTimer = setTimeout(() => setShowProduct1Text(true), 1500);
+      const product2ImageTimer = setTimeout(() => setShowProduct2Image(true), 2000);
+      const product2TextTimer = setTimeout(() => setShowProduct2Text(true), 2500);
+
+      return () => {
+        clearTimeout(productsTitleTimer);
+        clearTimeout(product1ImageTimer);
+        clearTimeout(product1TextTimer);
+        clearTimeout(product2ImageTimer);
+        clearTimeout(product2TextTimer);
+      };
+    }
+  }, [isProductsVisible]);
 
   const purple = "#6b4e9b";
 
@@ -28,6 +71,7 @@ function AboutUs() {
       {/* Background with animated bubbles */}
       <div className="animated-background-wrapper"></div>
 
+      {/* Main content block */}
       <div className="about-us-content">
         {/* Left side: Animated Logo */}
         <div className="about-us-logo">
@@ -46,18 +90,64 @@ function AboutUs() {
           </div>
         </div>
       </div>
+      
+      {/* --- New section: Our Products --- */}
+      <div className="products-section-container" ref={productsRef}>
+        <div className={`products-title-slide ${showProductsTitle ? 'visible' : ''}`}>
+            <h2 className="products-heading">Our Products:</h2>
+            <p className="products-intro-paragraph">
+                Our revolutionary solution is a two-part system designed to address menopause symptoms from both the inside and out.
+            </p>
+        </div>
+
+        <div className="products-row">
+            {/* Product 1 */}
+            <div className={`product-item ${showProduct1Image ? 'visible' : ''}`}>
+                <div className="product-image-container">
+                    <img src="/product1.png" alt="Quatro Capsules" className="product-image"/>
+                </div>
+            </div>
+            <div className={`product-item ${showProduct1Text ? 'visible' : ''}`}>
+                <div className="product-text-container">
+                    <ul>
+                        <li>• Support natural hormonal balance without synthetic hormones</li>
+                        <li>• Enriched with plant extracts to reduce hot flashes & night sweats</li>
+                        <li>• Contains prebiotics to restore intestinal microbiome</li>
+                        <li>• Promotes better sleep, mood, and energy</li>
+                    </ul>
+                </div>
+            </div>
+
+            {/* Product 2 */}
+            <div className={`product-item ${showProduct2Image ? 'visible' : ''}`}>
+                <div className="product-image-container">
+                    <img src="/product2.png" alt="Quatro Vaginal Cream" className="product-image"/>
+                </div>
+            </div>
+            <div className={`product-item ${showProduct2Text ? 'visible' : ''}`}>
+                <div className="product-text-container">
+                    <ul>
+                        <li>• Provides fast relief from dryness, itching, and discomfort</li>
+                        <li>• Restores and maintains the natural vaginal flora</li>
+                        <li>• Improves hydration, elasticity, and comfort</li>
+                        <li>• Designed for women who want a gentle, hormone-free solution</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
 
       <style>{`
         .about-us-container {
           min-height: 100vh;
-          padding-top: 50px; /* Reduced padding-top */
+          padding-top: 50px;
           display: flex;
           flex-direction: column;
           align-items: center;
           font-family: 'Poppins', sans-serif;
           color: #333;
           position: relative;
-          z-index: 1; /* To keep content above the animated background */
+          z-index: 1;
         }
         
         .animated-background-wrapper {
@@ -95,11 +185,11 @@ function AboutUs() {
           box-sizing: border-box;
           flex-wrap: wrap;
           margin-bottom: 50px;
-          margin-top: -50px; /* Added negative margin-top to move it up */
+          margin-top: -50px;
         }
 
         .about-us-logo {
-          width: 450px; /* Made the container wider for a bigger GIF */
+          width: 450px;
           display: flex;
           justify-content: center;
           align-self: center;
@@ -164,6 +254,85 @@ function AboutUs() {
           line-height: 1.6;
         }
         
+        /* New Products Section CSS */
+        .products-section-container {
+            width: 100%;
+            max-width: 1400px;
+            padding: 50px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .products-heading {
+            font-size: 2.5rem;
+            color: ${purple};
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .products-intro-paragraph {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .products-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start; /* Aligns all items to the top */
+            gap: 20px;
+            padding: 0 50px;
+        }
+        
+        .product-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .product-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-image-container {
+            width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-text-container {
+            max-width: 400px;
+            text-align: left;
+            margin-top: 15px; /* Added margin to push the text down */
+        }
+        
+        .product-text-container ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .product-text-container li {
+            margin-bottom: 8px;
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
         /* Responsive adjustments for large screens */
         @media (min-width: 769px) {
           .about-us-content {
@@ -179,16 +348,21 @@ function AboutUs() {
             margin-left: auto;
             margin-right: auto;
           }
+          .products-row {
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-start;
+          }
         }
         
         /* Responsive adjustments for small screens (mobile) */
         @media (max-width: 768px) {
           .about-us-content {
             flex-direction: column;
-            margin-top: 0; /* Reset for mobile */
+            margin-top: 0;
           }
           .about-us-logo {
-            width: 250px; /* Smaller GIF on mobile */
+            width: 250px;
             justify-content: center;
             align-self: center;
             padding-bottom: 0;
@@ -202,6 +376,16 @@ function AboutUs() {
           }
           .about-us-paragraph {
             font-size: 1rem;
+          }
+          .products-row {
+            flex-direction: column;
+            align-items: center;
+          }
+          .product-item {
+              padding: 10px 0;
+          }
+          .product-text-container {
+              margin-top: 0;
           }
         }
       `}</style>
