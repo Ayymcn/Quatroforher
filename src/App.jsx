@@ -11,14 +11,8 @@ function App() {
 
   return (
     <>
-      {/* Animated Background Wrapper with multiple shapes */}
-      <div className="animated-background-wrapper">
-        <div className="shape shape1"></div>
-        <div className="shape shape2"></div>
-        <div className="shape shape3"></div>
-        <div className="shape shape4"></div>
-        <div className="shape shape5"></div>
-      </div>
+      {/* Animated Background Wrapper */}
+      <div className="animated-background-wrapper"></div>
       
       {/* Header/Navbar */}
       <header className="header">
@@ -99,7 +93,7 @@ function App() {
         body {
           margin: 0;
           font-family: "Times New Roman", Times, serif;
-          background-color: #fdf5e6; /* Base background for safety */
+          background-color: #fdf5e6;
         }
 
         .animated-background-wrapper {
@@ -110,80 +104,22 @@ function App() {
           height: 100vh;
           overflow: hidden;
           z-index: -1;
-          background-color: #fdf5e6; /* Base background color */
+          background: linear-gradient(
+            -45deg,
+            #d6c2e2,
+            #a2d2ff,
+            #ffc0cb,
+            #d6c2e2
+          );
+          background-size: 400% 400%;
+          animation: fluidBackground 20s ease-in-out infinite;
         }
 
-        .shape {
-          position: absolute;
-          border-radius: 50%; /* Make them circular */
-          opacity: 0.3; /* Subtle transparency */
-          filter: blur(50px); /* Soften the edges */
-          animation: floatAndFade 25s infinite ease-in-out alternate;
+        @keyframes fluidBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-
-        .shape1 {
-          background-color: #ffc0cb; /* Soft Pink - femininity */
-          width: 250px; height: 250px;
-          top: 10%; left: 5%;
-          animation-delay: 0s;
-          animation-duration: 20s;
-        }
-
-        .shape2 {
-          background-color: #a2d2ff; /* Calming Blue - science/health */
-          width: 300px; height: 300px;
-          top: 60%; left: 70%;
-          animation-delay: 5s;
-          animation-duration: 22s;
-        }
-
-        .shape3 {
-          background-color: #d6c2e2; /* Elegant Lavender - subtle */
-          width: 200px; height: 200px;
-          top: 30%; left: 40%;
-          animation-delay: 10s;
-          animation-duration: 25s;
-        }
-
-        .shape4 {
-          background-color: #b3e0ff; /* Lighter Blue - cleanliness */
-          width: 180px; height: 180px;
-          top: 80%; left: 15%;
-          animation-delay: 2s;
-          animation-duration: 18s;
-        }
-
-        .shape5 {
-          background-color: #ffe0e6; /* Very light pink */
-          width: 220px; height: 220px;
-          top: 0%; left: 80%;
-          animation-delay: 7s;
-          animation-duration: 23s;
-        }
-
-        @keyframes floatAndFade {
-          0% {
-            transform: translate(0, 0) scale(1);
-            opacity: 0.3;
-          }
-          25% {
-            transform: translate(10vw, 5vh) scale(1.05);
-            opacity: 0.4;
-          }
-          50% {
-            transform: translate(0, 10vh) scale(0.95);
-            opacity: 0.2;
-          }
-          75% {
-            transform: translate(-10vw, 5vh) scale(1.1);
-            opacity: 0.4;
-          }
-          100% {
-            transform: translate(0, 0) scale(1);
-            opacity: 0.3;
-          }
-        }
-
 
         .header {
           position: fixed;
@@ -195,10 +131,8 @@ function App() {
           justify-content: space-between;
           align-items: center;
           padding: 0 20px;
-          background-color: rgba(255, 241, 228, 0.7); /* Frosted Glass Effect */
-          backdrop-filter: blur(10px); /* Blurs the elements behind it */
-          -webkit-backdrop-filter: blur(10px); /* For Safari support */
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Adds a subtle shadow */
+          background-color: #fff1e4;
+          box-shadow: none;
           z-index: 1000;
         }
 
