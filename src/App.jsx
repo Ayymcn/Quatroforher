@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import { FaGlobe } from 'react-icons/fa'; // Import the globe icon
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
-import AboutUs from "./pages/AboutUs"; // Import the new AboutUs page
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,7 +53,7 @@ function App() {
         {/* Desktop language button */}
         <div className="lang-container">
           <button className="desktop-lang-btn" onClick={() => setLangOpen(!langOpen)}>
-            <img src="/icon.png" alt="Language" className="lang-icon" />
+            <FaGlobe className="lang-icon" /> {/* Replaced image with React icon */}
           </button>
           {langOpen && (
             <ul className="lang-dropdown">
@@ -85,7 +86,7 @@ function App() {
             <li>
               <div className="lang-container">
                 <button className="mobile-lang-btn" onClick={() => setLangOpen(!langOpen)}>
-                  <img src="/icon.png" alt="Language" className="lang-icon" />
+                  <FaGlobe className="lang-icon" /> {/* Replaced image with React icon */}
                 </button>
                 {langOpen && (
                   <ul className="lang-dropdown">
@@ -104,7 +105,7 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<div></div>} />
-          <Route path="/about" element={<AboutUs />} /> {/* Add the new route for AboutUs */}
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
@@ -168,13 +169,12 @@ function App() {
 
         .logo-container, .lang-container {
           box-sizing: border-box;
-          border: 1px solid transparent;
+          /* Removed borders and shadows for cadre effect */
           transition: border 0.3s ease, box-shadow 0.3s ease;
         }
 
         .scrolled .logo-container, .scrolled .lang-container {
-          border-color: ${purple};
-          box-shadow: 0 0 0 1px ${lightPurple};
+          /* No borders or shadows here either */
         }
         
         .logo { 
@@ -187,6 +187,7 @@ function App() {
           width: 28px;
           height: 28px;
           display: block;
+          color: ${purple}; /* Set icon color */
         }
 
         .desktop-nav ul {
