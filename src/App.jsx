@@ -1,20 +1,20 @@
-import { useState, useEffect } from "react"; // Import useEffect
+import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import FAQ from "./pages/FAQ";
+import Contact from "./pages/Contact";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false); // New state for scroll effect
+  const [scrolled, setScrolled] = useState(false);
 
   const purple = "#6b4e9b";
   const lightPurple = "#8b6bc3";
 
-  // Effect to handle scroll
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
-      if (offset > 50) { // Adjust this value to control when the effect kicks in
+      if (offset > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -34,8 +34,10 @@ function App() {
       <div className="animated-background-wrapper"></div>
       
       {/* Header/Navbar */}
-      <header className={`header ${scrolled ? 'scrolled' : ''}`}> {/* Conditionally apply 'scrolled' class */}
-        <img src="/Logo.png" alt="Logo" className="logo" />
+      <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+        <div className="logo-container">
+          <img src="/Logo.png" alt="Logo" className="logo" />
+        </div>
 
         <nav className="desktop-nav">
           <ul>
@@ -103,7 +105,7 @@ function App() {
           <Route path="/" element={<div></div>} />
           <Route path="/about" element={<div>About Us Page</div>} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/contact" element={<div>Contact Us Page</div>} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
 
@@ -150,22 +152,41 @@ function App() {
           justify-content: space-between;
           align-items: center;
           padding: 0 20px;
-          background-color: #fff1e4; /* Default solid background */
+          background-color: #fff1e4;
           box-shadow: 0 2px 4px rgba(0,0,0,0.1);
           z-index: 1000;
-          transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; /* Add transition */
+          transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
         }
 
         .header.scrolled {
-          background-color: rgba(255, 241, 228, 0.75); /* Semi-transparent when scrolled */
-          backdrop-filter: blur(10px); /* Frosted glass effect when scrolled */
-          -webkit-backdrop-filter: blur(10px); /* For Safari support */
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Slightly more prominent shadow when scrolled */
+          background-color: rgba(255, 241, 228, 0.75);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
+        .logo-container, .lang-container {
+          box-sizing: border-box;
+          border: 1px solid transparent;
+          /* Removed border-radius */
+          transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .scrolled .logo-container, .scrolled .lang-container {
+          border-color: ${purple};
+          box-shadow: 0 0 0 1px ${lightPurple};
+        }
+        
         .logo { 
           height: 60px; 
           object-fit: contain; 
+          display: block;
+        }
+        
+        .lang-icon {
+          width: 28px;
+          height: 28px;
+          display: block;
         }
 
         .desktop-nav ul {
@@ -221,8 +242,6 @@ function App() {
         .desktop-lang-btn:hover, .mobile-lang-btn:hover { transform: scale(1.2); }
 
         .lang-container { position: relative; display: inline-block; }
-
-        .lang-icon { width: 28px; height: 28px; }
 
         .lang-dropdown {
           position: absolute;
