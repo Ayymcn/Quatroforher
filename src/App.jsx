@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
+import AboutUs from "./pages/AboutUs"; // Import the new AboutUs page
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -103,7 +104,7 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<div></div>} />
-          <Route path="/about" element={<div>About Us Page</div>} />
+          <Route path="/about" element={<AboutUs />} /> {/* Add the new route for AboutUs */}
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
@@ -168,7 +169,6 @@ function App() {
         .logo-container, .lang-container {
           box-sizing: border-box;
           border: 1px solid transparent;
-          /* Removed border-radius */
           transition: border 0.3s ease, box-shadow 0.3s ease;
         }
 
