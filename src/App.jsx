@@ -107,9 +107,9 @@ function App() {
           background: linear-gradient(
             -45deg,
             #d6c2e2,
-            #a2d2ff,
             #ffc0cb,
-            #d6c2e2
+            #d6c2e2,
+            #ffc0cb
           );
           background-size: 400% 400%;
           animation: fluidBackground 20s ease-in-out infinite;
@@ -131,12 +131,18 @@ function App() {
           justify-content: space-between;
           align-items: center;
           padding: 0 20px;
-          background-color: #fff1e4;
-          box-shadow: none;
+          background-color: rgba(255, 241, 228, 0.75); /* Slightly less transparent */
+          backdrop-filter: blur(10px); /* Frosted glass effect */
+          -webkit-backdrop-filter: blur(10px); /* For Safari support */
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
           z-index: 1000;
         }
 
-        .logo { height: 60px; object-fit: contain; }
+        .logo { 
+          height: 60px; 
+          object-fit: contain; 
+          background-color: transparent; /* Make logo background transparent */
+        }
 
         .desktop-nav ul {
           display: flex;
@@ -182,7 +188,7 @@ function App() {
         }
 
         .desktop-lang-btn, .mobile-lang-btn {
-          background: none;
+          background: transparent; /* Make button background transparent */
           border: none;
           cursor: pointer;
           padding: 0;
