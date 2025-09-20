@@ -1,13 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Import useEffect
 import { Routes, Route, Link } from "react-router-dom";
 import FAQ from "./pages/FAQ";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false); // New state for scroll effect
 
   const purple = "#6b4e9b";
   const lightPurple = "#8b6bc3";
+
+  // Effect to handle scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 50) { // Adjust this value to control when the effect kicks in
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -15,7 +34,7 @@ function App() {
       <div className="animated-background-wrapper"></div>
       
       {/* Header/Navbar */}
-      <header className="header">
+      <header className={`header ${scrolled ? 'scrolled' : ''}`}> {/* Conditionally apply 'scrolled' class */}
         <img src="/Logo.png" alt="Logo" className="logo" />
 
         <nav className="desktop-nav">
@@ -131,17 +150,22 @@ function App() {
           justify-content: space-between;
           align-items: center;
           padding: 0 20px;
-          background-color: rgba(255, 241, 228, 0.75); /* Slightly less transparent */
-          backdrop-filter: blur(10px); /* Frosted glass effect */
-          -webkit-backdrop-filter: blur(10px); /* For Safari support */
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          background-color: #fff1e4; /* Default solid background */
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
           z-index: 1000;
+          transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; /* Add transition */
+        }
+
+        .header.scrolled {
+          background-color: rgba(255, 241, 228, 0.75); /* Semi-transparent when scrolled */
+          backdrop-filter: blur(10px); /* Frosted glass effect when scrolled */
+          -webkit-backdrop-filter: blur(10px); /* For Safari support */
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Slightly more prominent shadow when scrolled */
         }
 
         .logo { 
           height: 60px; 
           object-fit: contain; 
-          background-color: transparent; /* Make logo background transparent */
         }
 
         .desktop-nav ul {
@@ -188,7 +212,7 @@ function App() {
         }
 
         .desktop-lang-btn, .mobile-lang-btn {
-          background: transparent; /* Make button background transparent */
+          background: none;
           border: none;
           cursor: pointer;
           padding: 0;
