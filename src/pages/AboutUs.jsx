@@ -50,13 +50,12 @@ function AboutUs() {
       <style>{`
         .about-us-container {
           min-height: 100vh;
-          padding-top: 100px;
+          padding-top: 50px; /* Reduced padding-top */
           display: flex;
           flex-direction: column;
           align-items: center;
           font-family: 'Poppins', sans-serif;
           color: #333;
-          text-align: center;
           position: relative;
           z-index: 1; /* To keep content above the animated background */
         }
@@ -90,29 +89,27 @@ function AboutUs() {
           display: flex;
           align-items: center;
           justify-content: center;
-          max-width: 1000px;
+          max-width: 1400px;
           width: 100%;
           padding: 20px;
           box-sizing: border-box;
-          flex-wrap: wrap; /* Allows wrapping on smaller screens */
+          flex-wrap: wrap;
           margin-bottom: 50px;
+          margin-top: -50px; /* Added negative margin-top to move it up */
         }
 
         .about-us-logo {
-          flex: 1;
-          min-width: 250px;
+          width: 450px; /* Made the container wider for a bigger GIF */
           display: flex;
           justify-content: center;
-          padding: 20px;
-          position: relative; /* Added for precise positioning */
-          right: 100px; /* Moves it further left */
-          margin-top: -70px; /* Moves it further up */
+          align-self: center;
+          margin-right: 50px;
         }
 
         .about-us-logo img {
           max-width: 100%;
           height: auto;
-          animation: pulse 2s infinite; /* Gentle pulsing animation */
+          animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
@@ -122,10 +119,13 @@ function AboutUs() {
         }
 
         .about-us-text {
-          flex: 2;
+          flex: 1;
           min-width: 300px;
-          text-align: left;
+          text-align: center;
           padding: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
         
         .about-us-title-slide,
@@ -134,6 +134,7 @@ function AboutUs() {
           transform: translateY(-20px);
           transition: opacity 0.8s ease-out, transform 0.8s ease-out;
           margin-bottom: 20px;
+          width: 100%;
         }
 
         .about-us-title-slide.visible,
@@ -162,21 +163,43 @@ function AboutUs() {
           color: #555;
           line-height: 1.6;
         }
-
+        
+        /* Responsive adjustments for large screens */
+        @media (min-width: 769px) {
+          .about-us-content {
+            flex-wrap: nowrap;
+            justify-content: space-between;
+          }
+          .about-us-logo {
+            margin-right: auto;
+            margin-top: 0;
+            margin-left: 0;
+          }
+          .about-us-text {
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+        
+        /* Responsive adjustments for small screens (mobile) */
         @media (max-width: 768px) {
           .about-us-content {
             flex-direction: column;
+            margin-top: 0; /* Reset for mobile */
           }
           .about-us-logo {
-            right: 0; /* Reset positioning for mobile */
-            margin-top: 0;
-            padding-bottom: 0; /* Reduce space below logo on mobile */
+            width: 250px; /* Smaller GIF on mobile */
+            justify-content: center;
+            align-self: center;
+            padding-bottom: 0;
+            margin: 0;
           }
-
+          .about-us-text {
+            text-align: center;
+          }
           .about-us-heading {
             font-size: 2.2rem;
           }
-          
           .about-us-paragraph {
             font-size: 1rem;
           }
