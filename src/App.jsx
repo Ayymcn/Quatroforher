@@ -4,6 +4,7 @@ import { FaGlobe } from 'react-icons/fa';
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
+import HomePage from "./pages/HomePage"; // 1. Import the HomePage component
 import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
   }, []);
 
   return (
-    <> {/* Replaced BrowserRouter with a Fragment */}
+    <>
       {/* Animated Background Wrapper */}
       <div className="animated-background-wrapper"></div>
       
@@ -105,7 +106,8 @@ function App() {
       <main className="main-content">
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<div>Home Page Content</div>} />
+          {/* 2. Link the home route to your HomePage component */}
+          <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
@@ -170,12 +172,10 @@ function App() {
 
         .logo-container, .lang-container {
           box-sizing: border-box;
-          /* Removed borders and shadows for cadre effect */
           transition: border 0.3s ease, box-shadow 0.3s ease;
         }
 
         .scrolled .logo-container, .scrolled .lang-container {
-          /* No borders or shadows here either */
         }
         
         .logo { 
@@ -188,7 +188,7 @@ function App() {
           width: 28px;
           height: 28px;
           display: block;
-          color: ${purple}; /* Set icon color */
+          color: ${purple};
         }
 
         .desktop-nav ul {
