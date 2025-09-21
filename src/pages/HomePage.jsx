@@ -18,7 +18,7 @@ const HomePage = () => {
         if (showContent) {
             const symptomsTimer = setTimeout(() => {
                 setShowSymptoms(true);
-            }, 1000); // Delay the symptom animation to happen after the hero content fade-in
+            }, 1000); 
 
             return () => clearTimeout(symptomsTimer);
         }
@@ -69,20 +69,20 @@ const HomePage = () => {
                 <button className="hero-cta">Discover Our Solution</button>
             </div>
             
-            {/* Image of the woman, now without border-radius or box-shadow */}
-            <img 
-                src="/homemain.png" 
-                alt="A woman stressing due to menopause symptoms" 
-                className={`main-image ${showContent ? 'visible' : ''}`}
-            /> 
-
             <div className={`issue-section ${showContent ? 'visible' : ''}`}>
                 <p className="issue-text">
                     Menopause is a natural stage of life, but its symptoms don't have to control you.
                 </p>
 
-                <div className={`symptoms-list ${showSymptoms ? 'visible' : ''}`}>
+                <div className={`content-layout ${showSymptoms ? 'visible' : ''}`}>
                     <div className="symptoms-column left-column">
+                        <div className={`symptom-item ${symptomsData[1].animationClass}`}>
+                            <FontAwesomeIcon icon={symptomsData[1].icon} className="symptom-icon" />
+                            <div className="symptom-details">
+                                <h3>{symptomsData[1].text}</h3>
+                                <p className="symptom-stats">{symptomsData[1].stats}</p>
+                            </div>
+                        </div>
                         <div className={`symptom-item ${symptomsData[0].animationClass}`}>
                             <FontAwesomeIcon icon={symptomsData[0].icon} className="symptom-icon" />
                             <div className="symptom-details">
@@ -90,21 +90,20 @@ const HomePage = () => {
                                 <p className="symptom-stats">{symptomsData[0].stats}</p>
                             </div>
                         </div>
+                    </div>
+
+                    <img 
+                        src="/homemain.png" 
+                        alt="A woman stressing due to menopause symptoms" 
+                        className={`main-image`}
+                    /> 
+
+                    <div className="symptoms-column right-column">
                         <div className={`symptom-item ${symptomsData[2].animationClass}`}>
                             <FontAwesomeIcon icon={symptomsData[2].icon} className="symptom-icon" />
                             <div className="symptom-details">
                                 <h3>{symptomsData[2].text}</h3>
                                 <p className="symptom-stats">{symptomsData[2].stats}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="symptoms-column right-column">
-                        <div className={`symptom-item ${symptomsData[1].animationClass}`}>
-                            <FontAwesomeIcon icon={symptomsData[1].icon} className="symptom-icon" />
-                            <div className="symptom-details">
-                                <h3>{symptomsData[1].text}</h3>
-                                <p className="symptom-stats">{symptomsData[1].stats}</p>
                             </div>
                         </div>
                         <div className={`symptom-item ${symptomsData[3].animationClass}`}>
@@ -219,28 +218,12 @@ const HomePage = () => {
                     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
                 }
 
-                .main-image {
-                    width: 100%;
-                    max-width: 600px;
-                    height: auto;
-                    margin: 40px 0;
-                    /* Removed border-radius and box-shadow for sharp corners and no frame */
-                    opacity: 0;
-                    transform: scale(0.95);
-                    transition: opacity 1s ease-out, transform 1s ease-out;
-                }
-                
-                .main-image.visible {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-
                 .issue-section {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     width: 100%;
-                    max-width: 1000px;
+                    max-width: 1200px;
                     text-align: center;
                     padding: 20px;
                     opacity: 0;
@@ -257,29 +240,36 @@ const HomePage = () => {
                     font-size: clamp(1.2rem, 3.5vmin, 2.5rem);
                     font-weight: 500;
                     color: ${lightPurple};
-                    margin-bottom: 40px;
+                    margin: 40px 0;
                     max-width: 800px;
                     line-height: 1.5;
                 }
 
-                .symptoms-list {
+                .content-layout {
                     display: flex;
+                    align-items: center;
                     justify-content: center;
-                    gap: 60px;
+                    gap: 50px;
                     width: 100%;
                     opacity: 0;
                     transition: opacity 1s ease-out;
                 }
-
-                .symptoms-list.visible {
+                
+                .content-layout.visible {
                     opacity: 1;
+                }
+
+                .main-image {
+                    width: 100%;
+                    max-width: 400px;
+                    height: auto;
                 }
                 
                 .symptoms-column {
                     display: flex;
                     flex-direction: column;
                     gap: 30px;
-                    width: 45%;
+                    flex-basis: 30%;
                 }
 
                 .symptom-item {
@@ -295,10 +285,10 @@ const HomePage = () => {
                     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
                 }
 
-                .symptoms-list.visible .symptom-item-1 { transition-delay: 0s; transform: translateX(0); opacity: 1; }
-                .symptoms-list.visible .symptom-item-2 { transition-delay: 0.2s; transform: translateX(0); opacity: 1; }
-                .symptoms-list.visible .symptom-item-3 { transition-delay: 0.4s; transform: translateX(0); opacity: 1; }
-                .symptoms-list.visible .symptom-item-4 { transition-delay: 0.6s; transform: translateX(0); opacity: 1; }
+                .content-layout.visible .symptom-item-1 { transition-delay: 0.2s; transform: translateX(0); opacity: 1; }
+                .content-layout.visible .symptom-item-2 { transition-delay: 0s; transform: translateX(0); opacity: 1; }
+                .content-layout.visible .symptom-item-3 { transition-delay: 0.4s; transform: translateX(0); opacity: 1; }
+                .content-layout.visible .symptom-item-4 { transition-delay: 0.6s; transform: translateX(0); opacity: 1; }
 
                 .symptom-icon {
                     font-size: 2rem;
@@ -331,13 +321,14 @@ const HomePage = () => {
                         width: 100%;
                     }
 
-                    .symptoms-list {
+                    .content-layout {
                         flex-direction: column;
-                        gap: 20px;
+                        gap: 40px;
                     }
 
                     .symptoms-column {
                         width: 100%;
+                        flex-basis: auto;
                         gap: 20px;
                     }
 
@@ -347,7 +338,7 @@ const HomePage = () => {
                         transition: none;
                     }
                     
-                    .symptoms-list.visible .symptom-item {
+                    .content-layout.visible .symptom-item {
                         transform: translateX(0);
                         opacity: 1;
                     }
