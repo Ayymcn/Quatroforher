@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import { FaGlobe } from 'react-icons/fa'; // Import the globe icon
+import { Routes, Route, Link } from "react-router-dom"; 
+import { FaGlobe } from 'react-icons/fa';
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,7 +32,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <> {/* Replaced BrowserRouter with a Fragment */}
       {/* Animated Background Wrapper */}
       <div className="animated-background-wrapper"></div>
       
@@ -53,7 +54,7 @@ function App() {
         {/* Desktop language button */}
         <div className="lang-container">
           <button className="desktop-lang-btn" onClick={() => setLangOpen(!langOpen)}>
-            <FaGlobe className="lang-icon" /> {/* Replaced image with React icon */}
+            <FaGlobe className="lang-icon" />
           </button>
           {langOpen && (
             <ul className="lang-dropdown">
@@ -77,7 +78,6 @@ function App() {
       {menuOpen && (
         <div className="mobile-overlay">
           <button className="overlay-close-btn" onClick={() => setMenuOpen(false)}>✖</button>
-
           <ul>
             <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
             <li><Link to="/about" onClick={() => setMenuOpen(false)}>About Us</Link></li>
@@ -86,7 +86,7 @@ function App() {
             <li>
               <div className="lang-container">
                 <button className="mobile-lang-btn" onClick={() => setLangOpen(!langOpen)}>
-                  <FaGlobe className="lang-icon" /> {/* Replaced image with React icon */}
+                  <FaGlobe className="lang-icon" />
                 </button>
                 {langOpen && (
                   <ul className="lang-dropdown">
@@ -101,10 +101,11 @@ function App() {
         </div>
       )}
 
-      {/* Routes */}
+      {/* Routes and Main Content */}
       <main className="main-content">
+        <ScrollToTop />
         <Routes>
-          <Route path="/" element={<div></div>} />
+          <Route path="/" element={<div>Home Page Content</div>} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />

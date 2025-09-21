@@ -3,82 +3,89 @@ import React, { useEffect, useState, useRef } from 'react';
 function AboutUs() {
   const [showTitle, setShowTitle] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
-  const [isProductsVisible, setIsProductsVisible] = useState(false);
   const [showProductsTitle, setShowProductsTitle] = useState(false);
   const [showProduct1Image, setShowProduct1Image] = useState(false);
   const [showProduct1Text, setShowProduct1Text] = useState(false);
   const [showProduct2Image, setShowProduct2Image] = useState(false);
   const [showProduct2Text, setShowProduct2Text] = useState(false);
 
-  const productsRef = useRef(null);
+  const productsSectionRef = useRef(null);
 
   useEffect(() => {
-    // Initial page-load animations for the About Us intro
-    const titleTimer = setTimeout(() => setShowTitle(true), 500);
-    const introTimer = setTimeout(() => setShowIntro(true), 1000);
+    // Initial animations for the header section
+    const titleTimer = setTimeout(() => {
+      setShowTitle(true);
+    }, 500);
 
-    // Intersection Observer for the "Our Products" section
+    const introTimer = setTimeout(() => {
+      setShowIntro(true);
+    }, 1000);
+
+    // Set up the Intersection Observer for the products section
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsProductsVisible(true);
-          observer.unobserve(entry.target); // Stop observing once visible
+        // If the section is intersecting, start the sequential animations
+        if (entry.isIntersecting && !showProductsTitle) { // The !showProductsTitle check prevents re-triggering
+          const productsTitleTimer = setTimeout(() => {
+            setShowProductsTitle(true);
+          }, 0); // Start immediately once the section is in view
+
+          const product1ImageTimer = setTimeout(() => {
+            setShowProduct1Image(true);
+          }, 500); // 0.5s delay after the title
+
+          const product1TextTimer = setTimeout(() => {
+            setShowProduct1Text(true);
+          }, 1000); // 1s delay after the title
+
+          const product2ImageTimer = setTimeout(() => {
+            setShowProduct2Image(true);
+          }, 1500); // 1.5s delay after the title
+
+          const product2TextTimer = setTimeout(() => {
+            setShowProduct2Text(true);
+          }, 2000); // 2s delay after the title
+          
+          // Clean up the timers created by the observer
+          return () => {
+            clearTimeout(productsTitleTimer);
+            clearTimeout(product1ImageTimer);
+            clearTimeout(product1TextTimer);
+            clearTimeout(product2ImageTimer);
+            clearTimeout(product2TextTimer);
+          };
         }
       },
       {
         root: null,
         rootMargin: '0px',
-        threshold: 0.1,
+        threshold: 0.2,
       }
     );
 
-    if (productsRef.current) {
-      observer.observe(productsRef.current);
+    // Start observing the products section when the component mounts
+    if (productsSectionRef.current) {
+      observer.observe(productsSectionRef.current);
     }
 
+    // Main component cleanup
     return () => {
       clearTimeout(titleTimer);
       clearTimeout(introTimer);
-      if (productsRef.current) {
-        observer.unobserve(productsRef.current);
-      }
+      observer.disconnect();
     };
-  }, []);
-
-  useEffect(() => {
-    // Sequential animations triggered by isProductsVisible state
-    if (isProductsVisible) {
-      const productsTitleTimer = setTimeout(() => setShowProductsTitle(true), 500);
-      const product1ImageTimer = setTimeout(() => setShowProduct1Image(true), 1000);
-      const product1TextTimer = setTimeout(() => setShowProduct1Text(true), 1500);
-      const product2ImageTimer = setTimeout(() => setShowProduct2Image(true), 2000);
-      const product2TextTimer = setTimeout(() => setShowProduct2Text(true), 2500);
-
-      return () => {
-        clearTimeout(productsTitleTimer);
-        clearTimeout(product1ImageTimer);
-        clearTimeout(product1TextTimer);
-        clearTimeout(product2ImageTimer);
-        clearTimeout(product2TextTimer);
-      };
-    }
-  }, [isProductsVisible]);
+  }, [showProductsTitle]); // Rerun effect if showProductsTitle changes (to prevent re-observing)
 
   const purple = "#6b4e9b";
 
   return (
     <div className="about-us-container">
-      {/* Background with animated bubbles */}
       <div className="animated-background-wrapper"></div>
 
-      {/* Main content block */}
       <div className="about-us-content">
-        {/* Left side: Animated Logo */}
         <div className="about-us-logo">
           <img src="/logogif.gif" alt="Quatro For Her Animated Logo" />
         </div>
-
-        {/* Right side: Sliding Text */}
         <div className="about-us-text">
           <div className={`about-us-title-slide ${showTitle ? 'visible' : ''}`}>
             <h1 className="about-us-heading">What is Quatro For Her?</h1>
@@ -91,8 +98,8 @@ function AboutUs() {
         </div>
       </div>
       
-      {/* --- New section: Our Products --- */}
-      <div className="products-section-container" ref={productsRef}>
+      {/* Attach the ref to this container to observe its position */}
+      <div className="products-section-container" ref={productsSectionRef}>
         <div className={`products-title-slide ${showProductsTitle ? 'visible' : ''}`}>
             <h2 className="products-heading">Our Products:</h2>
             <p className="products-intro-paragraph">
@@ -101,7 +108,6 @@ function AboutUs() {
         </div>
 
         <div className="products-row">
-            {/* Product 1 */}
             <div className={`product-item ${showProduct1Image ? 'visible' : ''}`}>
                 <div className="product-image-container">
                     <img src="/product1.png" alt="Quatro Capsules" className="product-image"/>
@@ -117,9 +123,7 @@ function AboutUs() {
                     </ul>
                 </div>
             </div>
-
-            {/* Product 2 */}
-            <div className={`product-item ${showProduct2Image ? 'visible' : ''}`}>
+            <div className={`product-item product-item-2 ${showProduct2Image ? 'visible' : ''}`}>
                 <div className="product-image-container">
                     <img src="/product2.png" alt="Quatro Vaginal Cream" className="product-image"/>
                 </div>
@@ -148,13 +152,14 @@ function AboutUs() {
           color: #333;
           position: relative;
           z-index: 1;
+          overflow-x: hidden; 
         }
         
         .animated-background-wrapper {
           position: fixed;
           top: 0;
           left: 0;
-          width: 100vw;
+          width: 100%;
           height: 100vh;
           overflow: hidden;
           z-index: -1;
@@ -254,7 +259,6 @@ function AboutUs() {
           line-height: 1.6;
         }
         
-        /* New Products Section CSS */
         .products-section-container {
             width: 100%;
             max-width: 1400px;
@@ -282,23 +286,20 @@ function AboutUs() {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            align-items: flex-start; /* Aligns all items to the top */
+            align-items: flex-start;
             gap: 20px;
             padding: 0 50px;
         }
         
-        .product-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 10px;
+        .product-item,
+        .products-title-slide { /* Apply transitions to all animated elements */
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         
-        .product-item.visible {
+        .product-item.visible,
+        .products-title-slide.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -317,7 +318,6 @@ function AboutUs() {
         .product-text-container {
             max-width: 400px;
             text-align: left;
-            margin-top: 15px; /* Added margin to push the text down */
         }
         
         .product-text-container ul {
@@ -333,7 +333,6 @@ function AboutUs() {
             line-height: 1.4;
         }
 
-        /* Responsive adjustments for large screens */
         @media (min-width: 769px) {
           .about-us-content {
             flex-wrap: nowrap;
@@ -353,10 +352,15 @@ function AboutUs() {
             justify-content: center;
             align-items: flex-start;
           }
+          .product-item-2 {
+            margin-top: -60px;
+          }
         }
         
-        /* Responsive adjustments for small screens (mobile) */
         @media (max-width: 768px) {
+          .about-us-container {
+            overflow-x: hidden;
+          }
           .about-us-content {
             flex-direction: column;
             margin-top: 0;
@@ -384,7 +388,7 @@ function AboutUs() {
           .product-item {
               padding: 10px 0;
           }
-          .product-text-container {
+          .product-item-2 {
               margin-top: 0;
           }
         }
