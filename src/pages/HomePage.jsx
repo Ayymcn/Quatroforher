@@ -13,18 +13,16 @@ const HomePage = () => {
 
     const purple = "#6b4e9b";
     const lightPurple = "#8a66b9";
+    const accentPink = "#e55f9a"; // A more saturated pink for better visibility
 
     return (
         <div className="home-container">
             <div className={`hero-content ${showContent ? 'visible' : ''}`}>
-                {/* Image on the left */}
-                <div className="hero-image-container">
-                    <img src="/mainhero.png" alt="A woman looking peaceful and serene" className="hero-image" />
-                </div>
-                {/* Animated text on the right */}
                 <div className="hero-text-container">
                     <h1 className="hero-heading">
-                        Because every woman deserves comfort, balance, and peace of mind.<br />Quatro for Her is here to help you feel like yourself again.
+                        Because every woman deserves comfort, balance, and peace of mind.
+                        <br />
+                        <span className="highlight-text">Quatro for Her</span> is here to help you feel like yourself again.
                     </h1>
                     <button className="hero-cta">Discover Our Solution</button>
                 </div>
@@ -34,23 +32,24 @@ const HomePage = () => {
                 .home-container {
                     display: flex;
                     min-height: calc(100vh - 80px);
-                    padding-top: 20px; /* Reduced padding to move content up */
+                    padding-top: 20px;
                     justify-content: center;
                     align-items: center;
                     font-family: 'Poppins', sans-serif;
                     overflow: hidden;
                     color: ${purple};
+                    text-align: center;
                 }
 
                 .hero-content {
                     display: flex;
-                    flex-direction: row;
+                    flex-direction: column;
                     align-items: center;
                     justify-content: center;
                     width: 100%;
-                    max-width: 1400px;
+                    max-width: 1000px;
                     padding: 40px;
-                    gap: 60px;
+                    gap: 40px;
                     opacity: 0;
                     transform: translateY(20px);
                     transition: opacity 1s ease-out, transform 1s ease-out;
@@ -61,33 +60,38 @@ const HomePage = () => {
                     transform: translateY(0);
                 }
 
-                .hero-image-container {
-                    flex: 1;
-                    min-width: 400px; 
-                    max-width: 70%; 
-                    position: relative;
-                }
-
-                .hero-image {
-                    width: 100%;
-                    height: auto;
-                    border-radius: 15px;
-                    object-fit: cover;
-                }
-                
                 .hero-text-container {
-                    flex: 1;
-                    min-width: 300px;
-                    text-align: left;
+                    flex: none;
+                    min-width: unset;
+                    text-align: center;
                 }
 
                 .hero-heading {
-                    font-size: clamp(1.2rem, 2.5vw, 2rem);
-                    font-weight: 500;
-                    line-height: 1.5;
+                    font-size: clamp(2rem, 4vw, 3.5rem); /* Adjusted font size to be smaller */
+                    font-weight: 600;
+                    line-height: 1.3;
                     color: ${purple};
-                    margin-bottom: 30px;
+                    margin-bottom: 40px;
                     white-space: pre-wrap;
+                }
+
+                .highlight-text {
+                    color: ${accentPink}; /* Changed to a more vibrant pink */
+                    font-weight: 700;
+                    text-shadow: 0 0 10px ${accentPink}, 0 0 20px rgba(229, 95, 154, 0.5); /* Enhanced glow */
+                    display: inline-block;
+                    animation: pulseGlow 2s infinite alternate ease-in-out;
+                }
+
+                @keyframes pulseGlow {
+                    from {
+                        transform: scale(1);
+                        text-shadow: 0 0 10px ${accentPink}, 0 0 15px rgba(229, 95, 154, 0.5);
+                    }
+                    to {
+                        transform: scale(1.03);
+                        text-shadow: 0 0 15px ${accentPink}, 0 0 25px rgba(229, 95, 154, 0.8);
+                    }
                 }
                 
                 .hero-cta {
@@ -116,13 +120,8 @@ const HomePage = () => {
                         padding-top: 100px;
                     }
                     .hero-content {
-                        flex-direction: column;
-                        gap: 40px;
                         padding: 20px;
-                        text-align: center;
-                    }
-                    .hero-image-container {
-                        max-width: 80%;
+                        gap: 30px;
                     }
                     .hero-heading {
                         font-size: 1.5rem;
