@@ -39,23 +39,24 @@ const HomePage = () => {
                 .home-container {
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
+                    align-items: center; /* Centering the hero-content */
                     min-height: calc(100vh - 80px);
-                    padding: 20px;
+                    padding: 20px; /* Reintroduced padding for a safe zone */
                     font-family: 'Poppins', sans-serif;
                     color: ${purple};
                     overflow-x: hidden;
                     box-sizing: border-box;
                     justify-content: center;
+                    width: 100%;
                 }
 
                 .hero-content {
                     display: flex;
                     align-items: center;
-                    justify-content: center;
-                    width: 100%;
-                    max-width: 1200px;
-                    padding: 40px;
+                    justify-content: flex-start;
+                    width: 100%; 
+                    max-width: 1200px; /* Restored max-width to a reasonable size */
+                    padding: 40px; /* Reintroduced padding */
                     gap: 60px;
                     opacity: 0;
                     transform: translateY(20px);
@@ -72,8 +73,9 @@ const HomePage = () => {
                     flex-direction: column;
                     align-items: flex-start;
                     gap: 20px;
-                    flex: 1;
-                    max-width: 600px;
+                    flex: 1; 
+                    max-width: 800px;
+                    margin-right: 0; 
                 }
 
                 .hero-heading-left, .hero-heading-right {
@@ -138,8 +140,7 @@ const HomePage = () => {
                     height: 400px;
                     object-fit: cover;
                     border-radius: 50%;
-                    /* Removed the border property */
-                    box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); /* Initial subtle shadow */
+                    box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); 
                     opacity: 0;
                     transform: scale(0.9);
                     transition: opacity 1s ease-out, transform 1s ease-out;
@@ -154,15 +155,15 @@ const HomePage = () => {
                 @keyframes heartbeat {
                     0% {
                         transform: scale(1);
-                        box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); /* Soft shadow at start */
+                        box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); 
                     }
                     50% {
                         transform: scale(1.03);
-                        box-shadow: 0 0 25px rgba(229, 95, 154, 0.8); /* More pronounced glow at peak */
+                        box-shadow: 0 0 25px rgba(229, 95, 154, 0.8); 
                     }
                     100% {
                         transform: scale(1);
-                        box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); /* Soft shadow at end */
+                        box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); 
                     }
                 }
 
@@ -171,10 +172,13 @@ const HomePage = () => {
                         flex-direction: column;
                         text-align: center;
                         gap: 40px;
+                        justify-content: center;
+                        padding: 40px 20px;
                     }
                     .text-section-left {
                         align-items: center;
                         max-width: 100%;
+                        margin-right: 0; 
                     }
                     .hero-heading-left, .hero-heading-right {
                         text-align: center;
@@ -185,7 +189,6 @@ const HomePage = () => {
                     .intro-image {
                         max-width: 320px;
                         height: 320px;
-                        /* Border removed */
                     }
                 }
 
@@ -201,7 +204,6 @@ const HomePage = () => {
                     .intro-image {
                         max-width: 250px;
                         height: 250px;
-                        /* Border removed */
                     }
                 }
             `}</style>
