@@ -1,4 +1,6 @@
+// src/HomePage.js
 import React, { useState, useEffect } from 'react';
+import SymptomsSection from './SymptomsSection'; // Import the new component
 
 const HomePage = () => {
     const [showContent, setShowContent] = useState(false);
@@ -28,25 +30,28 @@ const HomePage = () => {
                     </h1>
                     <a href="#products-section" className="hero-cta">Discover Our Solution</a>
                 </div>
-                
-                <img 
-                    src="/homeintro.png" 
-                    alt="A serene woman introducing Quatro for Her" 
+
+                <img
+                    src="/homeintro.png"
+                    alt="A serene woman introducing Quatro for Her"
                     className={`intro-image ${showContent ? 'visible' : ''}`}
-                /> 
+                />
             </div>
-            
+
             <hr className="divider"/>
 
             {/* Products Section */}
             <div id="products-section" className="products-container">
-                <img 
-                    src="/products.png" 
-                    alt="A display of Quatro for Her products" 
+                <img
+                    src="/products.png"
+                    alt="A display of Quatro for Her products"
                     className="products-image"
                 />
             </div>
             
+            {/* New Symptoms Section */}
+            <hr className="divider" />
+            <SymptomsSection />
 
             <style>{`
                 /* Add smooth scrolling to the entire page */
@@ -55,13 +60,13 @@ const HomePage = () => {
                 }
 
                 body {
-                    font-size: 110%; 
+                    font-size: 110%;
                 }
 
                 .home-container {
                     display: flex;
                     flex-direction: column;
-                    align-items: center; 
+                    align-items: center;
                     min-height: calc(100vh - 80px);
                     padding: 20px;
                     font-family: 'Poppins', sans-serif;
@@ -76,15 +81,15 @@ const HomePage = () => {
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
-                    width: 100%; 
+                    width: 100%;
                     max-width: 1200px;
-                    padding: 40px; 
+                    padding: 40px;
                     gap: 60px;
                     opacity: 0;
                     transform: translateY(20px);
                     transition: opacity 1s ease-out, transform 1s ease-out;
                 }
-                
+
                 .hero-content.visible {
                     opacity: 1;
                     transform: translateY(0);
@@ -95,9 +100,9 @@ const HomePage = () => {
                     flex-direction: column;
                     align-items: flex-start;
                     gap: 20px;
-                    flex: 1; 
+                    flex: 1;
                     max-width: 800px;
-                    margin-right: 0; 
+                    margin-right: 0;
                 }
 
                 .hero-heading-left, .hero-heading-right {
@@ -110,11 +115,11 @@ const HomePage = () => {
                     text-align: left;
                 }
 
-                .hero-heading-left.bigger-text, 
+                .hero-heading-left.bigger-text,
                 .hero-heading-right.bigger-text {
-                    font-size: clamp(2.7rem, 7vmin, 4.8rem); 
+                    font-size: clamp(2.7rem, 7vmin, 4.8rem);
                 }
-                
+
                 .highlight-text {
                     color: ${accentPink};
                     font-weight: 700;
@@ -148,7 +153,7 @@ const HomePage = () => {
                     text-transform: uppercase;
                     letter-spacing: 1px;
                     align-self: flex-start;
-                    text-decoration: none; 
+                    text-decoration: none;
                 }
 
                 .hero-cta:hover {
@@ -163,35 +168,34 @@ const HomePage = () => {
                     height: 400px;
                     object-fit: cover;
                     border-radius: 50%;
-                    box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); 
+                    box-shadow: 0 0 10px rgba(229, 95, 154, 0.3);
                     opacity: 0;
                     transform: scale(0.9);
                     transition: opacity 1s ease-out, transform 1s ease-out;
                 }
-                
+
                 .intro-image.visible {
                     opacity: 1;
                     transform: scale(1);
-                    animation: none; /* Removed the heartbeat animation */
-                    box-shadow: none; /* Removed the box-shadow */
+                    animation: heartbeat 2s infinite alternate ease-in-out; /* Re-added the heartbeat animation */
                 }
 
                 @keyframes heartbeat {
                     0% {
                         transform: scale(1);
-                        box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); 
+                        box-shadow: 0 0 10px rgba(229, 95, 154, 0.3);
                     }
                     50% {
                         transform: scale(1.03);
-                        box-shadow: 0 0 25px rgba(229, 95, 154, 0.8); 
+                        box-shadow: 0 0 25px rgba(229, 95, 154, 0.8);
                     }
                     100% {
                         transform: scale(1);
-                        box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); 
+                        box-shadow: 0 0 10px rgba(229, 95, 154, 0.3);
                     }
                 }
 
-                /* New Products Section CSS */
+                /* Products Section CSS */
                 .divider {
                     width: 80%;
                     max-width: 1200px;
@@ -242,7 +246,7 @@ const HomePage = () => {
                     .text-section-left {
                         align-items: center;
                         max-width: 100%;
-                        margin-right: 0; 
+                        margin-right: 0;
                     }
                     .hero-heading-left, .hero-heading-right {
                         text-align: center;
@@ -260,9 +264,9 @@ const HomePage = () => {
                 }
 
                 @media (max-width: 768px) {
-                    .hero-heading-left.bigger-text, 
+                    .hero-heading-left.bigger-text,
                     .hero-heading-right.bigger-text {
-                        font-size: clamp(2.5rem, 8vmin, 4rem); 
+                        font-size: clamp(2.5rem, 8vmin, 4rem);
                     }
                     .hero-cta {
                         padding: 15px 30px;
