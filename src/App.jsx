@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
 import HomePage from "./pages/HomePage";
 import ScrollToTop from "./components/ScrollToTop";
+import HashLinkScroll from "./components/HashLinkScroll"; // Add this import
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,7 +16,6 @@ function App() {
   const purple = "#6b4e9b";
   const lightPurple = "#8b6bc3";
 
-  // Function to handle the smooth scroll to the top
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -42,27 +42,26 @@ function App() {
 
   return (
     <>
-      {/* Animated Background Wrapper */}
       <div className="animated-background-wrapper"></div>
       
-      {/* Header/Navbar */}
       <header className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="logo-container">
-          <img src="/Logo.png" alt="Logo" className="logo" />
+          <Link to="/" onClick={handleScrollToTop}>
+            <img src="/Logo.png" alt="Logo" className="logo" />
+          </Link>
         </div>
 
         <nav className="desktop-nav">
           <ul>
-            {/* Added onClick handler to all page links */}
             <li><Link to="/" onClick={handleScrollToTop}>Home</Link></li>
-            <li><a href="#menopause-section">Menopause</a></li>
+            {/* This link will now work from all pages */}
+            <li><Link to="/#menopause-section">Menopause</Link></li>
             <li><Link to="/about" onClick={handleScrollToTop}>About Us</Link></li>
             <li><Link to="/faq" onClick={handleScrollToTop}>FAQ</Link></li>
             <li><Link to="/contact" className="contact-btn" onClick={handleScrollToTop}>Contact Us</Link></li>
           </ul>
         </nav>
 
-        {/* Desktop language button */}
         <div className="lang-container">
           <button className="desktop-lang-btn" onClick={() => setLangOpen(!langOpen)}>
             <FaGlobe className="lang-icon" />
@@ -76,7 +75,6 @@ function App() {
           )}
         </div>
 
-        {/* Mobile menu button */}
         <button
           className="mobile-menu-btn"
           onClick={() => setMenuOpen(true)}
@@ -85,14 +83,13 @@ function App() {
         </button>
       </header>
 
-      {/* Fullscreen Mobile Overlay Menu */}
       {menuOpen && (
         <div className="mobile-overlay">
           <button className="overlay-close-btn" onClick={() => setMenuOpen(false)}>✖</button>
           <ul>
-            {/* Added onClick handler to all mobile page links */}
             <li><Link to="/" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Home</Link></li>
-            <li><a href="#menopause-section" onClick={() => setMenuOpen(false)}>Menopause</a></li>
+            {/* This link will now work from all pages */}
+            <li><Link to="/#menopause-section" onClick={() => setMenuOpen(false)}>Menopause</Link></li>
             <li><Link to="/about" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>About Us</Link></li>
             <li><Link to="/faq" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>FAQ</Link></li>
             <li><Link to="/contact" className="contact-btn" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Contact Us</Link></li>
@@ -114,9 +111,9 @@ function App() {
         </div>
       )}
 
-      {/* Routes and Main Content */}
       <main className="main-content">
         <ScrollToTop />
+        <HashLinkScroll /> {/* Add this component inside the <main> or <Router> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUs />} />
@@ -125,7 +122,6 @@ function App() {
         </Routes>
       </main>
 
-      {/* The rest of your CSS remains the same */}
       <style>{`
         body {
           margin: 0;
