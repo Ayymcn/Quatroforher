@@ -90,7 +90,7 @@ const SymptomsSection = () => {
 
                 .symptoms-content {
                     display: flex;
-                    align-items: center;
+                    align-items: flex-start;
                     justify-content: center;
                     gap: 40px;
                     width: 100%;
@@ -98,8 +98,8 @@ const SymptomsSection = () => {
 
                 .symptoms-image-wrapper {
                     flex-shrink: 0;
-                    width: 350px;
-                    height: 350px;
+                    width: 400px;
+                    height: 400px;
                     overflow: hidden;
                     border-radius: 50%;
                     border: 5px solid ${accentPink};
@@ -119,7 +119,7 @@ const SymptomsSection = () => {
                 .symptoms-list {
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
+                    justify-content: flex-start; /* Corrected: Aligns content to the top */
                     gap: 30px;
                     flex: 1;
                     padding: 0 20px;
@@ -148,7 +148,7 @@ const SymptomsSection = () => {
                     align-items: center;
                     justify-content: center;
                     width: 350px;
-                    height: 120px;
+                    height: 120px; /* Fixed height for consistent sizing */
                     box-sizing: border-box;
                 }
 
@@ -212,6 +212,7 @@ const SymptomsSection = () => {
                     .symptoms-content {
                         flex-direction: column;
                         gap: 40px;
+                        align-items: center;
                     }
                     .symptoms-list {
                         flex-direction: column;
@@ -222,6 +223,7 @@ const SymptomsSection = () => {
                     .symptom-block {
                         width: 100%;
                         max-width: 350px;
+                        height: auto;
                     }
                     .symptoms-left, .symptoms-right {
                         text-align: center;
