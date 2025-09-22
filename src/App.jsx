@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { FaGlobe } from 'react-icons/fa';
 import FAQ from "./pages/FAQ";
@@ -9,6 +9,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import HashLinkScroll from "./components/HashLinkScroll";
 import ShopNow from "./pages/ShopNow";
 import Footer from "./components/Footer"; // Import the new Footer component
+import "./i18n";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,6 +19,7 @@ function App() {
 
   const purple = "#6b4e9b";
   const lightPurple = "#8b6bc3";
+  const { t, i18n } = useTranslation();
 
   const handleScrollToTop = () => {
     window.scrollTo({
@@ -24,6 +27,22 @@ function App() {
       behavior: 'smooth'
     });
   };
+
+  const langRef = useRef(null);
+
+useEffect(() => {
+  function handleClickOutside(event) {
+    if (langRef.current && !langRef.current.contains(event.target)) {
+      setLangOpen(false);
+    }
+  }
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,25 +74,25 @@ function App() {
 
         <nav className="desktop-nav">
           <ul>
-            <li><Link to="/" onClick={handleScrollToTop}>Home</Link></li>
-            <li><Link to="/#menopause-section">Menopause</Link></li>
-            <li><Link to="/about" onClick={handleScrollToTop}>About Us</Link></li>
-            <li><Link to="/shop-now" onClick={handleScrollToTop}>Shop Now</Link></li> 
-            <li><Link to="/faq" onClick={handleScrollToTop}>FAQ</Link></li>
-            <li><Link to="/contact" className="contact-btn" onClick={handleScrollToTop}>Contact Us</Link></li>
+            <li><Link to="/" onClick={handleScrollToTop}>{t("nav.home")}</Link></li>
+            <li><Link to="/#menopause-section">{t("nav.menopause")}</Link></li>
+            <li><Link to="/about" onClick={handleScrollToTop}>{t("nav.about")}</Link></li>
+            <li><Link to="/shop-now" onClick={handleScrollToTop}>{t("nav.shop")}</Link></li> 
+            <li><Link to="/faq" onClick={handleScrollToTop}>{t("nav.faq")}</Link></li>
+            <li><Link to="/contact" className="contact-btn" onClick={handleScrollToTop}>{t("nav.contact")}</Link></li>
           </ul>
         </nav>
 
-        <div className="lang-container">
+        <div className="lang-container" ref={langRef}>
           <button className="desktop-lang-btn" onClick={() => setLangOpen(!langOpen)}>
             <FaGlobe className="lang-icon" />
           </button>
           {langOpen && (
             <ul className="lang-dropdown">
-              <li>English</li>
-              <li>French</li>
-              <li>Arabic</li>
-            </ul>
+  <li onClick={() => { i18n.changeLanguage("en"); setLangOpen(false); }}>English</li>
+<li onClick={() => { i18n.changeLanguage("fr"); setLangOpen(false); }}>French</li>
+<li onClick={() => { i18n.changeLanguage("ar"); setLangOpen(false); }}>Arabic</li>
+</ul>
           )}
         </div>
 

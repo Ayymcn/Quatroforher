@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "menopause": "Ménopause",
+    "about": "À propos de nous",
+    "shop": "Acheter maintenant",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "footer": {
+    "title": "Restez connecté",
+    "social": "Suivez-nous sur les réseaux sociaux pour les mises à jour et les offres.",
+    "copyright": "QuatroForHer. Tous droits réservés."
+  },
+  "homepage": {
+    "hero": {
+      "heading1": "Parce que chaque femme mérite le confort, l'équilibre et la tranquillité d'esprit...",
+      "heading2": " est là pour vous aider à vous retrouver💜",
+      "cta": "Découvrez notre solution",
+      "imageAlt": "Une femme sereine présentant Quatro for Her"
+    },
+    "products": {
+      "imageAlt": "Un aperçu des produits Quatro for Her"
+    },
+    "symptoms": {
+      "intro_paragraph": "La ménopause est une étape naturelle de la vie, mais ses symptômes ne sont pas une fatalité.",
+      "symptom1": {
+        "title": "Troubles du sommeil & fatigue",
+        "stats": "Jusqu'à 61% des femmes ménopausées déclarent souffrir d'insomnie."
+      },
+      "symptom2": {
+        "title": "Bouffées de chaleur & sueurs nocturnes",
+        "stats": "Vécues par jusqu'à 80% des femmes ménopausées."
+      },
+      "symptom3": {
+        "title": "Sécheresse & inconfort vaginal",
+        "stats": "Affecte près d'une femme sur 2 en ménopause."
+      },
+      "symptom4": {
+        "title": "Ostéoporose & douleurs articulaires",
+        "stats": "La perte de densité osseuse s'accélère après la ménopause."
+      },
+      "imageAlt": "Une femme stressée par les symptômes de la ménopause"
+    }
+  },
+  "faq": {
+    "header": {
+      "title": "Questions fréquemment posées",
+      "subtitle": "Trouvez des réponses aux questions les plus courantes sur notre produit et ses bienfaits."
+    },
+    "questions": {
+      "q1": {
+        "question": "En quoi Quatro For Her est-il différent de la thérapie de remplacement hormonal (TRH) ?",
+        "answer": "Contrairement à la TRH, Quatro For Her ne contient pas d'hormones synthétiques. Il combine plutôt des extraits de plantes naturelles, des synbiotiques et des nutriments de soutien qui agissent en harmonie avec votre corps. Cela en fait une alternative sûre pour les femmes qui préfèrent ou doivent éviter les traitements à base d'hormones."
+      },
+      "q2": {
+        "question": "Est-ce sans danger si j'ai eu un cancer du sein ?",
+        "answer": "Oui. Quatro For Her est spécialement conçu pour les femmes qui ne peuvent pas ou ne souhaitent pas prendre d'hormones, y compris celles ayant des antécédents de cancers hormono-dépendants. Sa formule est exempte d'œstrogènes et agit par des voies naturelles et non hormonales pour favoriser le confort et l'équilibre. (Comme pour tout supplément, nous vous recommandons de consulter votre professionnel de la santé avant de commencer.)"
+      },
+      "q3": {
+        "question": "Combien de temps avant de ressentir les résultats ?",
+        "answer": "Chaque femme est unique, mais beaucoup remarquent des améliorations telles que des bouffées de chaleur réduites, un meilleur sommeil et un confort accru au cours des 3 à 4 premières semaines d'utilisation régulière. Les bénéfices maximaux sont généralement ressentis après 2 à 3 mois, le temps que le corps retrouve son équilibre."
+      }
+    },
+    "cta": {
+      "title": "Vous ne trouvez pas votre réponse ?",
+      "subtitle": "Nous sommes là pour vous aider ! Notre équipe est prête à vous assister.",
+      "button": "Contacter notre équipe de soutien"
+    }
+  },
+  "shop": {
+    "title": "Boutique bientôt disponible !",
+    "message": "Nous travaillons dur pour vous apporter quelque chose de spécial. Restez à l'écoute pour notre lancement officiel."
+  },
+  "contact": {
+    "header": {
+      "title": "Entrez en contact",
+      "paragraph": "Nous sommes là pour vous aider ! Que vous ayez des questions sur nos produits, besoin d'aide ou que vous souhaitiez simplement nous dire bonjour, nous serions ravis de vous entendre."
+    },
+    "form": {
+      "title": "Envoyez-nous un message",
+      "paragraph": "Laissez-nous un message et nous vous répondrons dans les plus brefs délais !",
+      "name": "Nom",
+      "name_placeholder": "Votre nom",
+      "email": "Courriel",
+      "email_placeholder": "Votre courriel",
+      "message": "Message",
+      "message_placeholder": "Votre message",
+      "button": "Envoyer le message",
+      "alert": "Message envoyé avec succès ! Nous vous répondrons bientôt."
+    },
+    "social": {
+      "title": "Contactez-nous et suivez notre parcours",
+      "paragraph": "Nous sommes toujours prêts à vous aider. Restez connecté et recevez les dernières mises à jour sur nos produits, nos nouvelles et plus encore en nous suivant sur les réseaux sociaux.",
+      "instagram_aria_label": "Visitez notre page Instagram",
+      "email_aria_label": "Envoyez-nous un courriel"
+    },
+    "map": {
+      "title": "Où nous trouver",
+      "paragraph": "Trouvez notre emplacement sur la carte ci-dessous. Nous sommes situés au cœur de Bab Ezzouar."
+    }
+  }
+}

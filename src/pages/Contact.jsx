@@ -1,47 +1,49 @@
 import React from 'react';
-import { FaEnvelope, FaMapMarkerAlt, FaInstagram, FaArrowRight } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
+import { FaEnvelope, FaMapMarkerAlt, FaInstagram } from 'react-icons/fa';
 
 function Contact() {
+  const { t } = useTranslation();
   const purple = "#6b4e9b";
   const lightPurple = "#8b6bc3";
   const darkPurple = "#4a3a63";
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    alert("Message sent successfully! We'll get back to you soon.");
+    alert(t("contact.form.alert"));
   };
 
   return (
     <div className="contact-page-container">
       {/* 1. Get in Touch Header */}
       <div className="contact-header-section">
-        <h1 className="contact-heading">Get in Touch</h1>
+        <h1 className="contact-heading">{t("contact.header.title")}</h1>
         <p className="contact-paragraph">
-          We're here to help! Whether you have questions about our products, need support, or just want to say hello, we'd love to hear from you.
+          {t("contact.header.paragraph")}
         </p>
       </div>
 
       {/* 2. Send Us a Message Section */}
       <div className="message-section-full-width">
         <div className="message-form-container">
-          <h2>Send Us a Message</h2>
+          <h2>{t("contact.form.title")}</h2>
           <p className="message-intro-paragraph">
-            Leave us a message, and we'll get back to you as soon as possible!
+            {t("contact.form.paragraph")}
           </p>
           <form onSubmit={handleFormSubmit} className="contact-form">
             <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input type="text" id="name" placeholder="Your Name" required />
+              <label htmlFor="name">{t("contact.form.name")}</label>
+              <input type="text" id="name" placeholder={t("contact.form.name_placeholder")} required />
             </div>
             <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" placeholder="Your Email" required />
+              <label htmlFor="email">{t("contact.form.email")}</label>
+              <input type="email" id="email" placeholder={t("contact.form.email_placeholder")} required />
             </div>
             <div className="form-group">
-              <label htmlFor="message">Message</label>
-              <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+              <label htmlFor="message">{t("contact.form.message")}</label>
+              <textarea id="message" placeholder={t("contact.form.message_placeholder")} rows="5" required></textarea>
             </div>
-            <button type="submit" className="send-btn">Send Message</button>
+            <button type="submit" className="send-btn">{t("contact.form.button")}</button>
           </form>
         </div>
       </div>
@@ -49,22 +51,22 @@ function Contact() {
       {/* 3. Merged Contact & Follow Our Journey Section */}
       <div className="merged-section-full-width">
         <div className="merged-content-container">
-          <h2>Contact & Follow Our Journey</h2>
+          <h2>{t("contact.social.title")}</h2>
           <p>
-            We are always ready to assist you. Stay connected and get the latest updates on our products, news, and more by following us on social media.
+            {t("contact.social.paragraph")}
           </p>
           <div className="social-icons-contact">
             <a 
               href="https://www.instagram.com/quatro_for_her/" 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label="Visit our Instagram page"
+              aria-label={t("contact.social.instagram_aria_label")}
             >
               <FaInstagram className="social-icon" />
             </a>
             <a 
               href="mailto:quatroforher@gmail.com"
-              aria-label="Send us an email"
+              aria-label={t("contact.social.email_aria_label")}
             >
               <FaEnvelope className="social-icon" />
             </a>
@@ -75,12 +77,12 @@ function Contact() {
       {/* 4. Where to Find Us Section */}
       <div className="map-section-full-width">
         <div className="map-container">
-          <h2>Where to Find Us</h2>
+          <h2>{t("contact.map.title")}</h2>
           <p className="map-intro-paragraph">
-            Find our location on the map below. We are located in the heart of Bab Ezzouar.
+            {t("contact.map.paragraph")}
           </p>
           <iframe
-            title="Bab Ezzouar Location"
+            title={t("contact.map.title")}
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1599.1994640103688!2d3.1670114949500753!3d36.72147171694209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128e51921f061e87%3A0x6331902096773345!2sBab%20Ezzouar%2C%20Algiers%2C%20Algeria!5e0!3m2!1sen!2sus!4v1695420000000!5m2!1sen!2sus"
             width="100%"
             height="450"
@@ -250,16 +252,16 @@ function Contact() {
 
         .map-section-full-width {
           width: 100%;
-          padding: 0; /* Removed padding for full width */
+          padding: 0;
           box-sizing: border-box;
           background-color: #fdf5e6;
         }
 
         .map-container {
-          max-width: 100%; /* Set to full width */
+          max-width: 100%;
           margin: 0 auto;
           text-align: center;
-          padding: 0 20px; /* Added padding to contain text content */
+          padding: 0 20px;
         }
 
         .map-container h2 {

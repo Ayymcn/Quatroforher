@@ -1,23 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-const faqData = [
-  {
-    question: "How is Quatro For Her different from hormone replacement therapy (HRT)?",
-    answer: "Unlike HRT, Quatro For Her does not contain synthetic hormones. Instead, it combines natural plant extracts, synbiotics, and supportive nutrients that work in harmony with your body. This makes it a safe alternative for women who prefer or need to avoid hormone-based treatments."
-  },
-  {
-    question: "Is it safe if I’ve had breast cancer?",
-    answer: "Yes. Quatro For Her is specifically designed for women who cannot or do not wish to take hormones, including those with a history of hormone-dependent cancers. Its formula is free from estrogen and works through natural, non-hormonal pathways to support comfort and balance. (As with any supplement, we recommend consulting your healthcare professional before starting.)"
-  },
-  {
-    question: "How long before I feel results?",
-    answer: "Every woman is unique, but many notice improvements such as reduced hot flashes, better sleep, and improved comfort within the first 3–4 weeks of consistent use. Maximum benefits are usually felt after 2–3 months as the body restores balance."
-  }
-];
+import { useTranslation } from "react-i18next";
 
 function FAQ() {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState(null);
+
+  const faqData = [
+    {
+      question: t("faq.questions.q1.question"),
+      answer: t("faq.questions.q1.answer")
+    },
+    {
+      question: t("faq.questions.q2.question"),
+      answer: t("faq.questions.q2.answer")
+    },
+    {
+      question: t("faq.questions.q3.question"),
+      answer: t("faq.questions.q3.answer")
+    }
+  ];
 
   const toggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -26,8 +28,8 @@ function FAQ() {
   return (
     <div className="faq-page-container">
       <div className="faq-header-content">
-        <h1>Frequently Asked Questions</h1>
-        <p>Find answers to the most common questions about our product and its benefits.</p>
+        <h1>{t("faq.header.title")}</h1>
+        <p>{t("faq.header.subtitle")}</p>
       </div>
 
       <div className="faq-list">
@@ -55,21 +57,21 @@ function FAQ() {
       </div>
 
       <div className="contact-cta-card">
-        <h2>Can't find your answer?</h2>
+        <h2>{t("faq.cta.title")}</h2>
         <p>
-          We're here to help! Our team is ready to assist you.
-          <Link to="/contact" className="contact-link-btn">Contact Our Support Team</Link>
+          {t("faq.cta.subtitle")}
+          <Link to="/contact" className="contact-link-btn">{t("faq.cta.button")}</Link>
         </p>
       </div>
 
       <style>{`
         .faq-page-container {
-  max-width: 800px; /* Change this value to adjust the width */
-  margin: 100px auto 80px;
-  padding: 0 20px;
-  font-family: "Times New Roman", Times, serif;
-  color: #333;
-}
+          max-width: 800px;
+          margin: 100px auto 80px;
+          padding: 0 20px;
+          font-family: "Times New Roman", Times, serif;
+          color: #333;
+        }
 
         .faq-header-content {
           text-align: center;

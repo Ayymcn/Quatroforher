@@ -1,14 +1,16 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ShopNow = () => {
+    const { t } = useTranslation();
     const purple = "#6b4e9b";
     const accentPink = "#e55f9a";
 
     return (
         <div className="coming-soon-container">
             <div className="coming-soon-content">
-                <h1>Shop Coming Soon!</h1>
-                <p>We're working hard to bring you something special. Stay tuned for our official launch.</p>
+                <h1>{t("shop.title")}</h1>
+                <p>{t("shop.message")}</p>
             </div>
 
             <style>{`

@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "home": "Home",
+    "menopause": "Menopause",
+    "about": "About Us",
+    "shop": "Shop Now",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "footer": {
+    "title": "Stay Connected",
+    "social": "Follow us on social media for updates and offers.",
+    "copyright": "QuatroForHer. All rights reserved."
+  },
+  "homepage": {
+    "hero": {
+      "heading1": "Because every woman deserves comfort, balance, and peace of mind...",
+      "heading2": " is here to help you feel like yourself again💜",
+      "cta": "Discover Our Solution",
+      "imageAlt": "A serene woman introducing Quatro for Her"
+    },
+    "products": {
+      "imageAlt": "A display of Quatro for Her products"
+    },
+    "symptoms": {
+      "intro_paragraph": "Menopause is a natural stage of life, but its symptoms don't have to control you.",
+      "symptom1": {
+        "title": "Sleep disorders & fatigue",
+        "stats": "Up to 61% of menopausal women report insomnia."
+      },
+      "symptom2": {
+        "title": "Hot flashes & night sweats",
+        "stats": "Experienced by up to 80% of menopausal women."
+      },
+      "symptom3": {
+        "title": "Vaginal dryness & discomfort",
+        "stats": "Affects nearly 1 in 2 menopausal women."
+      },
+      "symptom4": {
+        "title": "Osteoporosis & joint pain",
+        "stats": "Bone density loss accelerates after menopause."
+      },
+      "imageAlt": "A woman stressing due to menopause symptoms"
+    }
+  },
+  "faq": {
+    "header": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to the most common questions about our product and its benefits."
+    },
+    "questions": {
+      "q1": {
+        "question": "How is Quatro For Her different from hormone replacement therapy (HRT)?",
+        "answer": "Unlike HRT, Quatro For Her does not contain synthetic hormones. Instead, it combines natural plant extracts, synbiotics, and supportive nutrients that work in harmony with your body. This makes it a safe alternative for women who prefer or need to avoid hormone-based treatments."
+      },
+      "q2": {
+        "question": "Is it safe if I’ve had breast cancer?",
+        "answer": "Yes. Quatro For Her is specifically designed for women who cannot or do not wish to take hormones, including those with a history of hormone-dependent cancers. Its formula is free from estrogen and works through natural, non-hormonal pathways to support comfort and balance. (As with any supplement, we recommend consulting your healthcare professional before starting.)"
+      },
+      "q3": {
+        "question": "How long before I feel results?",
+        "answer": "Every woman is unique, but many notice improvements such as reduced hot flashes, better sleep, and improved comfort within the first 3–4 weeks of consistent use. Maximum benefits are usually felt after 2–3 months as the body restores balance."
+      }
+    },
+    "cta": {
+      "title": "Can't find your answer?",
+      "subtitle": "We're here to help! Our team is ready to assist you.",
+      "button": "Contact Our Support Team"
+    }
+  },
+  "shop": {
+    "title": "Shop Coming Soon!",
+    "message": "We're working hard to bring you something special. Stay tuned for our official launch."
+  },
+  "contact": {
+    "header": {
+      "title": "Get in Touch",
+      "paragraph": "We're here to help! Whether you have questions about our products, need support, or just want to say hello, we'd love to hear from you."
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "paragraph": "Leave us a message, and we'll get back to you as soon as possible!",
+      "name": "Name",
+      "name_placeholder": "Your Name",
+      "email": "Email",
+      "email_placeholder": "Your Email",
+      "message": "Message",
+      "message_placeholder": "Your Message",
+      "button": "Send Message",
+      "alert": "Message sent successfully! We'll get back to you soon."
+    },
+    "social": {
+      "title": "Contact & Follow Our Journey",
+      "paragraph": "We are always ready to assist you. Stay connected and get the latest updates on our products, news, and more by following us on social media.",
+      "instagram_aria_label": "Visit our Instagram page",
+      "email_aria_label": "Send us an email"
+    },
+    "map": {
+      "title": "Where to Find Us",
+      "paragraph": "Find our location on the map below. We are located in the heart of Bab Ezzouar."
+    }
+  }
+}

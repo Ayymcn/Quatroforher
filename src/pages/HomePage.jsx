@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SymptomsSection from './SymptomsSection'; 
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const HomePage = () => {
+    const { t } = useTranslation();
     const [showContent, setShowContent] = useState(false);
     const productsSectionRef = useRef(null);
 
@@ -33,17 +35,17 @@ const HomePage = () => {
             <div className={`hero-content ${showContent ? 'visible' : ''}`}>
                 <div className="text-section-left">
                     <h1 className="hero-heading-left bigger-text">
-                        <span className="gradient-text">Because every woman deserves comfort, balance, and peace of mind...</span>
+                        <span className="gradient-text">{t("homepage.hero.heading1")}</span>
                     </h1>
                     <h1 className="hero-heading-right bigger-text">
-                        <span className="hero-highlight">Quatro for Her</span><span className="gradient-text"> is here to help you feel like yourself again💜</span>
+                        <span className="hero-highlight">Quatro for Her</span><span className="gradient-text">{t("homepage.hero.heading2")}</span>
                     </h1>
-                    <a href="#products-section" className="hero-cta" onClick={handleScrollToProducts}>Discover Our Solution</a>
+                    <a href="#products-section" className="hero-cta" onClick={handleScrollToProducts}>{t("homepage.hero.cta")}</a>
                 </div>
 
                 <img
                     src="/homeintro.png"
-                    alt="A serene woman introducing Quatro for Her"
+                    alt={t("homepage.hero.imageAlt")}
                     className={`intro-image ${showContent ? 'visible' : ''}`}
                 />
             </div>
@@ -55,7 +57,7 @@ const HomePage = () => {
                 <Link to="/shop-now">
                     <img
                         src="/products.png"
-                        alt="A display of Quatro for Her products"
+                        alt={t("homepage.products.imageAlt")}
                         className="products-image"
                     />
                 </Link>
@@ -66,7 +68,7 @@ const HomePage = () => {
             <div id="menopause-section">
                 <SymptomsSection />
             </div>
-
+            
             <style>{`
                 /* Add smooth scrolling to the entire page */
                 html {

@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faTint, faVenus, faBone } from '@fortawesome/free-solid-svg-icons';
 
 const SymptomsSection = () => {
+    const { t } = useTranslation();
     const sectionRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
     
@@ -10,15 +12,12 @@ const SymptomsSection = () => {
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
-                // If the entry is intersecting (is in the viewport)
                 if (entries[0].isIntersecting) {
                     setIsVisible(true);
-                    // Stop observing after it's visible to prevent re-triggering
                     observer.unobserve(entries[0].target);
                 }
             },
             {
-                // Trigger when the component is 25% visible
                 threshold: 0.25,
             }
         );
@@ -27,7 +26,6 @@ const SymptomsSection = () => {
             observer.observe(sectionRef.current);
         }
 
-        // Cleanup function to disconnect the observer
         return () => {
             if (sectionRef.current) {
                 observer.unobserve(sectionRef.current);
@@ -42,26 +40,26 @@ const SymptomsSection = () => {
     const symptomsData = [
         {
             icon: faBed,
-            text: "Sleep disorders & fatigue",
-            stats: "Up to 61% of menopausal women report insomnia.",
+            text: t("homepage.symptoms.symptom1.title"),
+            stats: t("homepage.symptoms.symptom1.stats"),
             animationClass: 'symptom-item-1'
         },
         {
             icon: faTint,
-            text: "Hot flashes & night sweats",
-            stats: "Experienced by up to 80% of menopausal women.",
+            text: t("homepage.symptoms.symptom2.title"),
+            stats: t("homepage.symptoms.symptom2.stats"),
             animationClass: 'symptom-item-2'
         },
         {
             icon: faVenus,
-            text: "Vaginal dryness & discomfort",
-            stats: "Affects nearly 1 in 2 menopausal women.",
+            text: t("homepage.symptoms.symptom3.title"),
+            stats: t("homepage.symptoms.symptom3.stats"),
             animationClass: 'symptom-item-3'
         },
         {
             icon: faBone,
-            text: "Osteoporosis & joint pain",
-            stats: "Bone density loss accelerates after menopause.",
+            text: t("homepage.symptoms.symptom4.title"),
+            stats: t("homepage.symptoms.symptom4.stats"),
             animationClass: 'symptom-item-4'
         }
     ];
@@ -69,7 +67,7 @@ const SymptomsSection = () => {
     return (
         <div ref={sectionRef} className={`issue-section ${isVisible ? 'visible' : ''}`}>
             <p className="issue-text">
-                Menopause is a natural stage of life, but its symptoms don't have to control you.
+                {t("homepage.symptoms.intro_paragraph")}
             </p>
 
             <div className={`content-layout ${isVisible ? 'visible' : ''}`}>
@@ -92,7 +90,7 @@ const SymptomsSection = () => {
 
                 <img
                     src="/homemain.png"
-                    alt="A woman stressing due to menopause symptoms"
+                    alt={t("homepage.symptoms.imageAlt")}
                     className={`main-image`}
                 />
 
@@ -119,7 +117,7 @@ const SymptomsSection = () => {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    justify-content: center; /* Added to center content */
+                    justify-content: center;
                     width: 100%;
                     max-width: 1200px;
                     text-align: center;
@@ -147,7 +145,7 @@ const SymptomsSection = () => {
                 .content-layout {
                     display: flex;
                     align-items: center;
-                    justify-content: center; /* Added to center content */
+                    justify-content: center;
                     gap: 60px;
                     width: 100%;
                     opacity: 0;
