@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom"; 
+import { Routes, Route, Link } from "react-router-dom";
 import { FaGlobe } from 'react-icons/fa';
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
 import HomePage from "./pages/HomePage";
 import ScrollToTop from "./components/ScrollToTop";
-import HashLinkScroll from "./components/HashLinkScroll"; // Add this import
+import HashLinkScroll from "./components/HashLinkScroll";
+import ShopNow from "./pages/ShopNow";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -54,9 +55,9 @@ function App() {
         <nav className="desktop-nav">
           <ul>
             <li><Link to="/" onClick={handleScrollToTop}>Home</Link></li>
-            {/* This link will now work from all pages */}
             <li><Link to="/#menopause-section">Menopause</Link></li>
             <li><Link to="/about" onClick={handleScrollToTop}>About Us</Link></li>
+             <li><Link to="/shop-now" onClick={handleScrollToTop}>Shop Now</Link></li> 
             <li><Link to="/faq" onClick={handleScrollToTop}>FAQ</Link></li>
             <li><Link to="/contact" className="contact-btn" onClick={handleScrollToTop}>Contact Us</Link></li>
           </ul>
@@ -88,7 +89,6 @@ function App() {
           <button className="overlay-close-btn" onClick={() => setMenuOpen(false)}>✖</button>
           <ul>
             <li><Link to="/" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Home</Link></li>
-            {/* This link will now work from all pages */}
             <li><Link to="/#menopause-section" onClick={() => setMenuOpen(false)}>Menopause</Link></li>
             <li><Link to="/about" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>About Us</Link></li>
             <li><Link to="/faq" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>FAQ</Link></li>
@@ -113,12 +113,13 @@ function App() {
 
       <main className="main-content">
         <ScrollToTop />
-        <HashLinkScroll /> {/* Add this component inside the <main> or <Router> */}
+        <HashLinkScroll />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/shop-now" element={<ShopNow />} />
         </Routes>
       </main>
 
@@ -210,6 +211,7 @@ function App() {
           text-decoration: none;
           color: ${purple};
           font-weight: bold;
+          font-size: 1.1rem; /* Consistent font size for all nav links */
           position: relative;
           transition: all 0.3s ease;
         }
@@ -319,8 +321,8 @@ function App() {
         }
         .mobile-overlay li { margin: 20px 0; }
 
-        .mobile-overlay a, .mobile-lang-btn {
-          font-size: 28px;
+        .mobile-overlay a {
+          font-size: 1.5rem; /* Set a specific, consistent font size for mobile links */
           text-decoration: none;
           color: ${purple};
           font-weight: bold;

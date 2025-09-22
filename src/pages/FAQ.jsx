@@ -64,10 +64,10 @@ function FAQ() {
 
       <style>{`
         .faq-page-container {
-          max-width: 900px;
-          margin: 120px auto 80px;
+          max-width: 1400px;
+          margin: 100px auto 80px;
           padding: 0 20px;
-          font-family: 'Poppins', sans-serif;
+          font-family: "Times New Roman", Times, serif;
           color: #333;
         }
 
@@ -123,7 +123,7 @@ function FAQ() {
           font-size: 1.25rem;
           margin: 0;
           color: #6b4e9b;
-          font-weight: 600;
+          font-weight: bold; 
           flex-grow: 1;
           margin-right: 15px;
         }
@@ -162,15 +162,15 @@ function FAQ() {
           padding: 50px 30px;
           background-image: linear-gradient(to right bottom, #8b6bc3, #6b4e9b);
           border-radius: 20px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
           color: #fff;
           transform: translateY(0);
           transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.4s ease;
         }
         
         .contact-cta-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 15px 40px rgba(0,0,0,0.2);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
 
         .contact-link-btn {
@@ -188,7 +188,7 @@ function FAQ() {
         .contact-link-btn:hover {
           background-color: #f0eaf8;
           transform: translateY(-2px);
-          box-shadow: 6px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         @media (max-width: 768px) {

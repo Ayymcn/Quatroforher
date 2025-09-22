@@ -148,7 +148,7 @@ function AboutUs() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          font-family: 'Poppins', sans-serif;
+          font-family: "Times New Roman", Times, serif;
           color: #333;
           position: relative;
           z-index: 1;

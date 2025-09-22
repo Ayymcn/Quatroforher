@@ -96,7 +96,7 @@ function Contact() {
         .contact-page-container {
           padding-top: 0;
           padding-bottom: 80px;
-          font-family: 'Poppins', sans-serif;
+          font-family: "Times New Roman", Times, serif;
           color: #333;
           display: flex;
           flex-direction: column;

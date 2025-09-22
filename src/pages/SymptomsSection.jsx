@@ -119,6 +119,7 @@ const SymptomsSection = () => {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    justify-content: center; /* Added to center content */
                     width: 100%;
                     max-width: 1200px;
                     text-align: center;
@@ -146,7 +147,7 @@ const SymptomsSection = () => {
                 .content-layout {
                     display: flex;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: center; /* Added to center content */
                     gap: 60px;
                     width: 100%;
                     opacity: 0;

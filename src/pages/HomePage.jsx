@@ -49,7 +49,7 @@ const HomePage = () => {
             </div>
 
             <hr className="divider"/>
-
+            
             {/* Products Section with Link */}
             <div id="products-section" ref={productsSectionRef} className="products-container">
                 <Link to="/shop-now">
@@ -61,7 +61,7 @@ const HomePage = () => {
                 </Link>
             </div>
             
-            {/* The SymptomsSection with the new font prop */}
+            {/* The SymptomsSection */}
             <hr className="divider" />
             <div id="menopause-section">
                 <SymptomsSection />
@@ -83,7 +83,7 @@ const HomePage = () => {
                     align-items: center;
                     min-height: calc(100vh - 80px);
                     padding: 20px;
-                    font-family: 'Times New Roman', Times, serif; /* Changed to Times New Roman */
+                    font-family: 'Times New Roman', Times, serif;
                     color: ${purple};
                     overflow-x: hidden;
                     box-sizing: border-box;
@@ -171,18 +171,18 @@ const HomePage = () => {
                     border-radius: 50px;
                     cursor: pointer;
                     transition: all 0.3s ease;
-                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
                     text-transform: uppercase;
                     letter-spacing: 1px;
                     align-self: flex-start;
                     text-decoration: none;
-                    font-family: 'Times New Roman', Times, serif; /* The new font style */
+                    font-family: 'Times New Roman', Times, serif;
                 }
 
                 .hero-cta:hover {
                     background-color: ${lightPurple};
-                    transform: translateY(-3px);
-                    box-shadow: 8px 25px rgba(0, 0, 0, 0.3);
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
                 }
 
                 .intro-image {
