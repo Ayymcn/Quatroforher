@@ -40,7 +40,6 @@ const HomePage = () => {
 
             {/* Products Section */}
             <div id="products-section" className="products-container">
-                <h2 className="products-heading">Our Products</h2>
                 <img 
                     src="/products.png" 
                     alt="A display of Quatro for Her products" 
@@ -173,7 +172,8 @@ const HomePage = () => {
                 .intro-image.visible {
                     opacity: 1;
                     transform: scale(1);
-                    animation: heartbeat 2s infinite alternate ease-in-out;
+                    animation: none; /* Removed the heartbeat animation */
+                    box-shadow: none; /* Removed the box-shadow */
                 }
 
                 @keyframes heartbeat {
@@ -253,6 +253,9 @@ const HomePage = () => {
                     .intro-image {
                         max-width: 320px;
                         height: 320px;
+                    }
+                    .products-container {
+                        padding: 20px;
                     }
                 }
 
