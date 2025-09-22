@@ -1,243 +1,222 @@
-import React from 'react';
-import { FaFire, FaBed, FaVenus, FaBone } from 'react-icons/fa';
+// src/SymptomsSection.js
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBed, faTint, faVenus, faBone } from '@fortawesome/free-solid-svg-icons';
 
 const SymptomsSection = () => {
+    const [showSymptoms, setShowSymptoms] = useState(false);
+    
+    useEffect(() => {
+        const symptomsTimer = setTimeout(() => {
+            setShowSymptoms(true);
+        }, 1000);
+
+        return () => clearTimeout(symptomsTimer);
+    }, []);
+
     const purple = "#6b4e9b";
     const lightPurple = "#8a66b9";
     const accentPink = "#e55f9a";
-    const iconSize = "3.5rem";
+
+    const symptomsData = [
+        {
+            icon: faBed,
+            text: "Sleep disorders & fatigue",
+            stats: "Up to 61% of menopausal women report insomnia.",
+            animationClass: 'symptom-item-1'
+        },
+        {
+            icon: faTint,
+            text: "Hot flashes & night sweats",
+            stats: "Experienced by up to 80% of menopausal women.",
+            animationClass: 'symptom-item-2'
+        },
+        {
+            icon: faVenus,
+            text: "Vaginal dryness & discomfort",
+            stats: "Affects nearly 1 in 2 menopausal women.",
+            animationClass: 'symptom-item-3'
+        },
+        {
+            icon: faBone,
+            text: "Osteoporosis & joint pain",
+            stats: "Bone density loss accelerates after menopause.",
+            animationClass: 'symptom-item-4'
+        }
+    ];
 
     return (
-        <div className="symptoms-container">
-            <h2 className="symptoms-heading">
+        <div className={`issue-section ${showSymptoms ? 'visible' : ''}`}>
+            <p className="issue-text">
                 Menopause is a natural stage of life, but its symptoms don't have to control you.
-            </h2>
+            </p>
 
-            <div className="symptoms-content">
-                {/* Left Side Symptoms */}
-                <div className="symptoms-list symptoms-left">
-                    <div className="symptom-block">
-                        <div className="symptom-item">
-                            <FaFire className="symptom-icon floating" size={iconSize} />
-                            <div>
-                                <h3>Hot Flashes & Night Sweats</h3>
-                                <p className="symptom-stats">Affects up to <span style={{ color: accentPink }}>80%</span> of women</p>
-                            </div>
+            <div className={`content-layout ${showSymptoms ? 'visible' : ''}`}>
+                <div className="symptoms-column left-column">
+                    <div className={`symptom-item ${symptomsData[1].animationClass}`}>
+                        <FontAwesomeIcon icon={symptomsData[1].icon} className="symptom-icon" />
+                        <div className="symptom-details">
+                            <h3>{symptomsData[1].text}</h3>
+                            <p className="symptom-stats">{symptomsData[1].stats}</p>
                         </div>
                     </div>
-                    <div className="symptom-block">
-                        <div className="symptom-item">
-                            <FaVenus className="symptom-icon floating" size={iconSize} />
-                            <div>
-                                <h3>Vaginal Dryness & Discomfort</h3>
-                                <p className="symptom-stats">Experienced by around <span style={{ color: accentPink }}>40%</span> of postmenopausal women</p>
-                            </div>
+                    <div className={`symptom-item ${symptomsData[0].animationClass}`}>
+                        <FontAwesomeIcon icon={symptomsData[0].icon} className="symptom-icon" />
+                        <div className="symptom-details">
+                            <h3>{symptomsData[0].text}</h3>
+                            <p className="symptom-stats">{symptomsData[0].stats}</p>
                         </div>
                     </div>
                 </div>
 
-                {/* Central Image */}
-                <div className="symptom-image-wrapper">
-                    <img
-                        src="/homemain.png"
-                        alt="A stressed woman dealing with menopause symptoms"
-                        className="symptom-image"
-                    />
-                </div>
+                <img
+                    src="/homemain.png"
+                    alt="A woman stressing due to menopause symptoms"
+                    className={`main-image`}
+                />
 
-                {/* Right Side Symptoms */}
-                <div className="symptoms-list symptoms-right">
-                    <div className="symptom-block">
-                        <div className="symptom-item">
-                            <FaBed className="symptom-icon floating" size={iconSize} />
-                            <div>
-                                <h3>Sleep Disorders & Fatigue</h3>
-                                <p className="symptom-stats">Sleep issues are a primary concern for <span style={{ color: accentPink }}>61%</span> of menopausal women</p>
-                            </div>
+                <div className="symptoms-column right-column">
+                    <div className={`symptom-item ${symptomsData[2].animationClass}`}>
+                        <FontAwesomeIcon icon={symptomsData[2].icon} className="symptom-icon" />
+                        <div className="symptom-details">
+                            <h3>{symptomsData[2].text}</h3>
+                            <p className="symptom-stats">{symptomsData[2].stats}</p>
                         </div>
                     </div>
-                    <div className="symptom-block">
-                        <div className="symptom-item">
-                            <FaBone className="symptom-icon floating" size={iconSize} />
-                            <div>
-                                <h3>Osteoporosis & Joint Pain</h3>
-                                <p className="symptom-stats">Bone density loss accelerates by up to <span style={{ color: accentPink }}>10%</span> in the first 5 years post-menopause</p>
-                            </div>
+                    <div className={`symptom-item ${symptomsData[3].animationClass}`}>
+                        <FontAwesomeIcon icon={symptomsData[3].icon} className="symptom-icon" />
+                        <div className="symptom-details">
+                            <h3>{symptomsData[3].text}</h3>
+                            <p className="symptom-stats">{symptomsData[3].stats}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* CSS for the component */}
             <style>{`
-                .symptoms-container {
+                .issue-section {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    text-align: center;
                     width: 100%;
                     max-width: 1200px;
-                    padding: 60px 20px;
-                    color: ${purple};
-                }
-
-                .symptoms-heading {
-                    font-size: clamp(1.8rem, 4vmin, 2.8rem);
-                    font-weight: 600;
-                    margin-bottom: 50px;
-                    line-height: 1.3;
-                }
-
-                .symptoms-content {
-                    display: flex;
-                    align-items: flex-start;
-                    justify-content: center;
-                    gap: 40px;
-                    width: 100%;
-                }
-
-                .symptoms-image-wrapper {
-                    flex-shrink: 0;
-                    width: 400px;
-                    height: 400px;
-                    overflow: hidden;
-                    border-radius: 50%;
-                    border: 5px solid ${accentPink};
-                    box-shadow: 0 0 30px rgba(229, 95, 154, 0.5);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-
-                .symptom-image {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    transform: scale(1.05);
-                }
-
-                .symptoms-list {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-start; /* Corrected: Aligns content to the top */
-                    gap: 30px;
-                    flex: 1;
-                    padding: 0 20px;
+                    text-align: center;
+                    padding: 20px;
+                    opacity: 0;
+                    transform: translateY(20px);
+                    transition: opacity 1s ease-out, transform 1s ease-out;
                 }
                 
-                .symptoms-left {
-                    align-items: flex-end;
-                    text-align: right;
+                .issue-section.visible {
+                    opacity: 1;
+                    transform: translateY(0);
                 }
 
-                .symptoms-right {
+                .issue-text {
+                    font-size: clamp(1.2rem, 3.5vmin, 2.5rem);
+                    font-weight: 500;
+                    color: ${lightPurple};
+                    margin: 40px 0;
+                    max-width: 800px;
+                    line-height: 1.5;
+                }
+
+                .content-layout {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 50px;
+                    width: 100%;
+                    opacity: 0;
+                    transition: opacity 1s ease-out;
+                }
+                
+                .content-layout.visible {
+                    opacity: 1;
+                }
+
+                .main-image {
+                    width: 100%;
+                    max-width: 400px;
+                    height: auto;
+                }
+                
+                .symptoms-column {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 30px;
+                    flex-basis: 30%;
+                }
+
+                .symptom-item {
+                    display: flex;
                     align-items: flex-start;
+                    gap: 20px;
+                    padding: 20px;
+                    background-color: #f7f3fd;
+                    border-radius: 15px;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+                    opacity: 0;
+                    transform: translateX(-50px);
+                    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                }
+
+                .content-layout.visible .symptom-item-1 { transition-delay: 0.2s; transform: translateX(0); opacity: 1; }
+                .content-layout.visible .symptom-item-2 { transition-delay: 0s; transform: translateX(0); opacity: 1; }
+                .content-layout.visible .symptom-item-3 { transition-delay: 0.4s; transform: translateX(0); opacity: 1; }
+                .content-layout.visible .symptom-item-4 { transition-delay: 0.6s; transform: translateX(0); opacity: 1; }
+
+                .symptom-icon {
+                    font-size: 2rem;
+                    color: ${accentPink};
+                    min-width: 2rem;
+                }
+
+                .symptom-details {
                     text-align: left;
                 }
 
-                .symptom-block {
-                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 245, 245, 0.8));
-                    border-radius: 15px;
-                    padding: 20px 30px;
-                    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-                    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-                    animation: pulse 2s infinite ease-in-out alternate;
-                    border: 1px solid rgba(107, 78, 155, 0.2);
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    width: 350px;
-                    height: 120px; /* Fixed height for consistent sizing */
-                    box-sizing: border-box;
-                }
-
-                .symptom-block:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-                }
-                
-                .symptom-item {
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-                    width: 100%;
-                }
-
-                .symptoms-left .symptom-item {
-                    flex-direction: row-reverse;
-                }
-
-                .symptom-icon {
-                    color: ${accentPink};
-                    text-shadow: 0 0 5px rgba(229, 95, 154, 0.5);
-                }
-
-                .symptom-item h3 {
-                    font-size: 1.4rem;
+                .symptom-details h3 {
+                    font-size: 1.2rem;
                     font-weight: 600;
-                    margin: 0;
+                    margin: 0 0 5px 0;
                     color: ${purple};
                 }
 
-                .symptom-item p {
+                .symptom-details p {
                     font-size: 0.9rem;
-                    margin: 5px 0 0;
-                    line-height: 1.5;
+                    font-weight: 400;
+                    margin: 0;
                     color: #555;
                 }
+                
+                @media (max-width: 768px) {
+                    .hero-heading-right {
+                        margin: 20px 0 0 0;
+                        text-align: center;
+                        width: 100%;
+                    }
 
-                .symptom-stats {
-                    font-weight: 500;
-                    color: ${lightPurple};
-                }
-
-                /* Animations */
-                @keyframes pulse {
-                    from { transform: scale(1); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); }
-                    to { transform: scale(1.02); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); }
-                }
-
-                @keyframes floating {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(-5px); }
-                }
-
-                .floating {
-                    animation: floating 3s infinite ease-in-out;
-                }
-
-                /* Media Queries for Responsiveness */
-                @media (max-width: 992px) {
-                    .symptoms-content {
+                    .content-layout {
                         flex-direction: column;
                         gap: 40px;
-                        align-items: center;
                     }
-                    .symptoms-list {
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        padding: 0;
-                    }
-                    .symptom-block {
+
+                    .symptoms-column {
                         width: 100%;
-                        max-width: 350px;
-                        height: auto;
+                        flex-basis: auto;
+                        gap: 20px;
                     }
-                    .symptoms-left, .symptoms-right {
-                        text-align: center;
-                        align-items: center;
-                    }
-                    .symptoms-left .symptom-item {
-                        flex-direction: column;
-                    }
+
                     .symptom-item {
-                        flex-direction: column;
+                        transform: translateX(0);
+                        opacity: 1;
+                        transition: none;
                     }
-                    .symptoms-image-wrapper {
-                        width: 250px;
-                        height: 250px;
+                    
+                    .content-layout.visible .symptom-item {
+                        transform: translateX(0);
+                        opacity: 1;
                     }
                 }
             `}</style>
