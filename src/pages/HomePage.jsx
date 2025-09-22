@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-// Removed FontAwesome imports as symptoms are no longer present
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faBed, faTint, faVenus, faBone } from '@fortawesome/free-solid-svg-icons';
-
 const HomePage = () => {
     const [showContent, setShowContent] = useState(false);
 
@@ -15,22 +11,18 @@ const HomePage = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    // Removed showSymptoms state and its useEffect as symptoms are no longer present
-
     const purple = "#6b4e9b";
     const lightPurple = "#8a66b9";
     const accentPink = "#e55f9a";
 
-    // Removed symptomsData array as symptoms are no longer present
-
     return (
         <div className="home-container">
             <div className={`hero-content ${showContent ? 'visible' : ''}`}>
-                <div className="text-section-left"> {/* New wrapper for left-aligned text */}
-                    <h1 className="hero-heading-left smaller-text"> {/* Added smaller-text class */}
+                <div className="text-section-left">
+                    <h1 className="hero-heading-left bigger-text">
                         Because every woman deserves comfort, balance, and peace of mind...
                     </h1>
-                    <h1 className="hero-heading-right smaller-text"> {/* Added smaller-text class */}
+                    <h1 className="hero-heading-right bigger-text">
                         <span className="highlight-text">Quatro for Her</span> is here to help you feel like yourself again<span className="heart-icon">💜</span>
                     </h1>
                     <button className="hero-cta">Discover Our Solution</button>
@@ -39,7 +31,7 @@ const HomePage = () => {
                 <img 
                     src="/homeintro.png" 
                     alt="A serene woman introducing Quatro for Her" 
-                    className={`intro-image ${showContent ? 'visible' : ''}`} // New class for the intro image
+                    className={`intro-image ${showContent ? 'visible' : ''}`}
                 /> 
             </div>
 
@@ -54,17 +46,17 @@ const HomePage = () => {
                     color: ${purple};
                     overflow-x: hidden;
                     box-sizing: border-box;
-                    justify-content: center; /* Center content vertically */
+                    justify-content: center;
                 }
 
                 .hero-content {
                     display: flex;
-                    align-items: center; /* Align items vertically in the center */
-                    justify-content: center; /* Center items horizontally */
+                    align-items: center;
+                    justify-content: center;
                     width: 100%;
                     max-width: 1200px;
                     padding: 40px;
-                    gap: 60px; /* Increased gap for better separation */
+                    gap: 60px;
                     opacity: 0;
                     transform: translateY(20px);
                     transition: opacity 1s ease-out, transform 1s ease-out;
@@ -75,13 +67,13 @@ const HomePage = () => {
                     transform: translateY(0);
                 }
 
-                .text-section-left { /* New style for the left text column */
+                .text-section-left {
                     display: flex;
                     flex-direction: column;
-                    align-items: flex-start; /* Align text to the left */
-                    gap: 20px; /* Space between headings and button */
-                    flex: 1; /* Allow text section to grow */
-                    max-width: 600px; /* Limit width for better readability */
+                    align-items: flex-start;
+                    gap: 20px;
+                    flex: 1;
+                    max-width: 600px;
                 }
 
                 .hero-heading-left, .hero-heading-right {
@@ -91,12 +83,12 @@ const HomePage = () => {
                     margin: 0;
                     white-space: pre-wrap;
                     width: 100%;
-                    text-align: left; /* Ensure text is left-aligned */
+                    text-align: left;
                 }
 
-                .hero-heading-left.smaller-text, 
-                .hero-heading-right.smaller-text {
-                    font-size: clamp(1.8rem, 4.5vmin, 3rem); /* Smaller font size */
+                .hero-heading-left.bigger-text, 
+                .hero-heading-right.bigger-text {
+                    font-size: clamp(2.5rem, 6.5vmin, 4.5rem); 
                 }
                 
                 .highlight-text {
@@ -131,7 +123,7 @@ const HomePage = () => {
                     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
                     text-transform: uppercase;
                     letter-spacing: 1px;
-                    align-self: flex-start; /* Align button to the left */
+                    align-self: flex-start;
                 }
 
                 .hero-cta:hover {
@@ -140,53 +132,76 @@ const HomePage = () => {
                     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
                 }
 
-                .intro-image { /* Style for the new image */
+                .intro-image {
                     width: 100%;
-                    max-width: 550px; /* Made slightly bigger */
-                    height: auto;
-                    object-fit: contain; /* Ensure the image fits within its bounds */
+                    max-width: 400px;
+                    height: 400px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    /* Removed the border property */
+                    box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); /* Initial subtle shadow */
                     opacity: 0;
-                    transform: scale(0.95);
+                    transform: scale(0.9);
                     transition: opacity 1s ease-out, transform 1s ease-out;
                 }
                 
                 .intro-image.visible {
                     opacity: 1;
                     transform: scale(1);
+                    animation: heartbeat 2s infinite alternate ease-in-out;
                 }
 
-                @media (max-width: 992px) { /* Adjust for medium screens */
+                @keyframes heartbeat {
+                    0% {
+                        transform: scale(1);
+                        box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); /* Soft shadow at start */
+                    }
+                    50% {
+                        transform: scale(1.03);
+                        box-shadow: 0 0 25px rgba(229, 95, 154, 0.8); /* More pronounced glow at peak */
+                    }
+                    100% {
+                        transform: scale(1);
+                        box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); /* Soft shadow at end */
+                    }
+                }
+
+                @media (max-width: 992px) {
                     .hero-content {
-                        flex-direction: column; /* Stack text and image on smaller screens */
+                        flex-direction: column;
                         text-align: center;
                         gap: 40px;
                     }
                     .text-section-left {
-                        align-items: center; /* Center text and button on smaller screens */
+                        align-items: center;
                         max-width: 100%;
                     }
                     .hero-heading-left, .hero-heading-right {
                         text-align: center;
                     }
                     .hero-cta {
-                        align-self: center; /* Center button on smaller screens */
+                        align-self: center;
                     }
                     .intro-image {
-                        max-width: 450px; /* Adjust image size for smaller screens */
+                        max-width: 320px;
+                        height: 320px;
+                        /* Border removed */
                     }
                 }
 
                 @media (max-width: 768px) {
-                    .hero-heading-left.smaller-text, 
-                    .hero-heading-right.smaller-text {
-                        font-size: clamp(1.5rem, 5vmin, 2.5rem); /* Even smaller on mobile */
+                    .hero-heading-left.bigger-text, 
+                    .hero-heading-right.bigger-text {
+                        font-size: clamp(2.2rem, 7vmin, 3.5rem); 
                     }
                     .hero-cta {
                         padding: 15px 30px;
                         font-size: 1rem;
                     }
                     .intro-image {
-                        max-width: 350px; /* Further adjust image size for mobile */
+                        max-width: 250px;
+                        height: 250px;
+                        /* Border removed */
                     }
                 }
             `}</style>
