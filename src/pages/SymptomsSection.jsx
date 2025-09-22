@@ -1,17 +1,38 @@
-// src/SymptomsSection.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faTint, faVenus, faBone } from '@fortawesome/free-solid-svg-icons';
 
 const SymptomsSection = () => {
-    const [showSymptoms, setShowSymptoms] = useState(false);
+    const sectionRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
     
+    // IntersectionObserver to detect when the section enters the viewport
     useEffect(() => {
-        const symptomsTimer = setTimeout(() => {
-            setShowSymptoms(true);
-        }, 1000);
+        const observer = new IntersectionObserver(
+            (entries) => {
+                // If the entry is intersecting (is in the viewport)
+                if (entries[0].isIntersecting) {
+                    setIsVisible(true);
+                    // Stop observing after it's visible to prevent re-triggering
+                    observer.unobserve(entries[0].target);
+                }
+            },
+            {
+                // Trigger when the component is 25% visible
+                threshold: 0.25,
+            }
+        );
 
-        return () => clearTimeout(symptomsTimer);
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        // Cleanup function to disconnect the observer
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
     }, []);
 
     const purple = "#6b4e9b";
@@ -46,12 +67,12 @@ const SymptomsSection = () => {
     ];
 
     return (
-        <div className={`issue-section ${showSymptoms ? 'visible' : ''}`}>
+        <div ref={sectionRef} className={`issue-section ${isVisible ? 'visible' : ''}`}>
             <p className="issue-text">
                 Menopause is a natural stage of life, but its symptoms don't have to control you.
             </p>
 
-            <div className={`content-layout ${showSymptoms ? 'visible' : ''}`}>
+            <div className={`content-layout ${isVisible ? 'visible' : ''}`}>
                 <div className="symptoms-column left-column">
                     <div className={`symptom-item ${symptomsData[1].animationClass}`}>
                         <FontAwesomeIcon icon={symptomsData[1].icon} className="symptom-icon" />
@@ -125,7 +146,7 @@ const SymptomsSection = () => {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    gap: 50px;
+                    gap: 60px;
                     width: 100%;
                     opacity: 0;
                     transition: opacity 1s ease-out;
@@ -137,14 +158,15 @@ const SymptomsSection = () => {
 
                 .main-image {
                     width: 100%;
-                    max-width: 400px;
+                    max-width: 550px;
                     height: auto;
+                    object-fit: contain;
                 }
                 
                 .symptoms-column {
                     display: flex;
                     flex-direction: column;
-                    gap: 30px;
+                    gap: 150px; /* Greatly increased gap */
                     flex-basis: 30%;
                 }
 
@@ -222,6 +244,6 @@ const SymptomsSection = () => {
             `}</style>
         </div>
     );
-};
+}; 
 
 export default SymptomsSection;

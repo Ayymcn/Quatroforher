@@ -4,7 +4,7 @@ import { FaGlobe } from 'react-icons/fa';
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
-import HomePage from "./pages/HomePage"; // 1. Import the HomePage component
+import HomePage from "./pages/HomePage";
 import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
@@ -14,6 +14,14 @@ function App() {
 
   const purple = "#6b4e9b";
   const lightPurple = "#8b6bc3";
+
+  // Function to handle the smooth scroll to the top
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,10 +53,12 @@ function App() {
 
         <nav className="desktop-nav">
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/faq">FAQ</Link></li>
-            <li><Link to="/contact" className="contact-btn">Contact Us</Link></li>
+            {/* Added onClick handler to all page links */}
+            <li><Link to="/" onClick={handleScrollToTop}>Home</Link></li>
+            <li><a href="#menopause-section">Menopause</a></li>
+            <li><Link to="/about" onClick={handleScrollToTop}>About Us</Link></li>
+            <li><Link to="/faq" onClick={handleScrollToTop}>FAQ</Link></li>
+            <li><Link to="/contact" className="contact-btn" onClick={handleScrollToTop}>Contact Us</Link></li>
           </ul>
         </nav>
 
@@ -80,10 +90,12 @@ function App() {
         <div className="mobile-overlay">
           <button className="overlay-close-btn" onClick={() => setMenuOpen(false)}>✖</button>
           <ul>
-            <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-            <li><Link to="/about" onClick={() => setMenuOpen(false)}>About Us</Link></li>
-            <li><Link to="/faq" onClick={() => setMenuOpen(false)}>FAQ</Link></li>
-            <li><Link to="/contact" className="contact-btn" onClick={() => setMenuOpen(false)}>Contact Us</Link></li>
+            {/* Added onClick handler to all mobile page links */}
+            <li><Link to="/" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Home</Link></li>
+            <li><a href="#menopause-section" onClick={() => setMenuOpen(false)}>Menopause</a></li>
+            <li><Link to="/about" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>About Us</Link></li>
+            <li><Link to="/faq" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>FAQ</Link></li>
+            <li><Link to="/contact" className="contact-btn" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Contact Us</Link></li>
             <li>
               <div className="lang-container">
                 <button className="mobile-lang-btn" onClick={() => setLangOpen(!langOpen)}>
@@ -106,7 +118,6 @@ function App() {
       <main className="main-content">
         <ScrollToTop />
         <Routes>
-          {/* 2. Link the home route to your HomePage component */}
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/faq" element={<FAQ />} />
@@ -114,7 +125,7 @@ function App() {
         </Routes>
       </main>
 
-      {/* CSS */}
+      {/* The rest of your CSS remains the same */}
       <style>{`
         body {
           margin: 0;

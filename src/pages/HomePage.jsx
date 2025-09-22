@@ -1,9 +1,9 @@
-// src/HomePage.js
-import React, { useState, useEffect } from 'react';
-import SymptomsSection from './SymptomsSection'; // Import the new component
+import React, { useState, useEffect, useRef } from 'react';
+import SymptomsSection from './SymptomsSection';
 
 const HomePage = () => {
     const [showContent, setShowContent] = useState(false);
+    const productsSectionRef = useRef(null);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -12,6 +12,15 @@ const HomePage = () => {
 
         return () => clearTimeout(timer);
     }, []);
+
+    const handleScrollToProducts = (e) => {
+        e.preventDefault(); 
+        if (productsSectionRef.current) {
+            const headerHeight = 80; // Assuming header height is 80px
+            const topOffset = productsSectionRef.current.getBoundingClientRect().top + window.scrollY - headerHeight;
+            window.scrollTo({ top: topOffset, behavior: 'smooth' });
+        }
+    };
 
     const purple = "#6b4e9b";
     const lightPurple = "#8a66b9";
@@ -28,7 +37,7 @@ const HomePage = () => {
                     <h1 className="hero-heading-right bigger-text">
                         <span className="highlight-text">Quatro for Her</span> is here to help you feel like yourself again<span className="heart-icon">💜</span>
                     </h1>
-                    <a href="#products-section" className="hero-cta">Discover Our Solution</a>
+                    <a href="#products-section" className="hero-cta" onClick={handleScrollToProducts}>Discover Our Solution</a>
                 </div>
 
                 <img
@@ -41,7 +50,7 @@ const HomePage = () => {
             <hr className="divider"/>
 
             {/* Products Section */}
-            <div id="products-section" className="products-container">
+            <div id="products-section" ref={productsSectionRef} className="products-container">
                 <img
                     src="/products.png"
                     alt="A display of Quatro for Her products"
@@ -49,9 +58,11 @@ const HomePage = () => {
                 />
             </div>
             
-            {/* New Symptoms Section */}
+            {/* New Symptoms Section - The target for the "Menopause" link */}
             <hr className="divider" />
-            <SymptomsSection />
+            <div id="menopause-section">
+                <SymptomsSection />
+            </div>
 
             <style>{`
                 /* Add smooth scrolling to the entire page */
@@ -63,6 +74,7 @@ const HomePage = () => {
                     font-size: 110%;
                 }
 
+                /* Your existing CSS for home-container and other elements remains the same */
                 .home-container {
                     display: flex;
                     flex-direction: column;
@@ -177,7 +189,7 @@ const HomePage = () => {
                 .intro-image.visible {
                     opacity: 1;
                     transform: scale(1);
-                    animation: heartbeat 2s infinite alternate ease-in-out; /* Re-added the heartbeat animation */
+                    animation: heartbeat 2s infinite alternate ease-in-out;
                 }
 
                 @keyframes heartbeat {
@@ -213,6 +225,9 @@ const HomePage = () => {
                     width: 100%;
                     max-width: 1200px;
                     padding: 40px 20px;
+                    
+                    /* This ensures the products section starts below the fixed header */
+                    scroll-margin-top: 80px; /* Adjusted to match App.jsx header height */
                 }
 
                 .products-heading {
@@ -233,6 +248,10 @@ const HomePage = () => {
 
                 .products-image:hover {
                     transform: scale(1.02);
+                }
+                
+                #menopause-section {
+                    scroll-margin-top: 80px; /* Add this to ensure the section isn't hidden by the fixed header */
                 }
 
                 @media (max-width: 992px) {
