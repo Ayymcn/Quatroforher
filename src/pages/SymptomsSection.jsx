@@ -134,12 +134,13 @@ const SymptomsSection = () => {
                 }
 
                 .issue-text {
-                    font-size: clamp(1.2rem, 3.5vmin, 2.5rem);
+                    font-size: clamp(1.8rem, 4.5vmin, 3rem);
                     font-weight: 500;
                     color: ${lightPurple};
                     margin: 40px 0;
                     max-width: 800px;
                     line-height: 1.5;
+                    font-family: 'Monotype Corsiva', cursive;
                 }
 
                 .content-layout {
@@ -166,7 +167,7 @@ const SymptomsSection = () => {
                 .symptoms-column {
                     display: flex;
                     flex-direction: column;
-                    gap: 150px; /* Greatly increased gap */
+                    gap: 150px;
                     flex-basis: 30%;
                 }
 

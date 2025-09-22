@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SymptomsSection from './SymptomsSection';
+import SymptomsSection from './SymptomsSection'; 
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
     const [showContent, setShowContent] = useState(false);
@@ -16,7 +17,7 @@ const HomePage = () => {
     const handleScrollToProducts = (e) => {
         e.preventDefault(); 
         if (productsSectionRef.current) {
-            const headerHeight = 80; // Assuming header height is 80px
+            const headerHeight = 80;
             const topOffset = productsSectionRef.current.getBoundingClientRect().top + window.scrollY - headerHeight;
             window.scrollTo({ top: topOffset, behavior: 'smooth' });
         }
@@ -32,10 +33,10 @@ const HomePage = () => {
             <div className={`hero-content ${showContent ? 'visible' : ''}`}>
                 <div className="text-section-left">
                     <h1 className="hero-heading-left bigger-text">
-                        Because every woman deserves comfort, balance, and peace of mind...
+                        <span className="gradient-text">Because every woman deserves comfort, balance, and peace of mind...</span>
                     </h1>
                     <h1 className="hero-heading-right bigger-text">
-                        <span className="highlight-text">Quatro for Her</span> is here to help you feel like yourself again<span className="heart-icon">💜</span>
+                        <span className="hero-highlight">Quatro for Her</span><span className="gradient-text"> is here to help you feel like yourself again💜</span>
                     </h1>
                     <a href="#products-section" className="hero-cta" onClick={handleScrollToProducts}>Discover Our Solution</a>
                 </div>
@@ -49,16 +50,18 @@ const HomePage = () => {
 
             <hr className="divider"/>
 
-            {/* Products Section */}
+            {/* Products Section with Link */}
             <div id="products-section" ref={productsSectionRef} className="products-container">
-                <img
-                    src="/products.png"
-                    alt="A display of Quatro for Her products"
-                    className="products-image"
-                />
+                <Link to="/shop-now">
+                    <img
+                        src="/products.png"
+                        alt="A display of Quatro for Her products"
+                        className="products-image"
+                    />
+                </Link>
             </div>
             
-            {/* New Symptoms Section - The target for the "Menopause" link */}
+            {/* The SymptomsSection with the new font prop */}
             <hr className="divider" />
             <div id="menopause-section">
                 <SymptomsSection />
@@ -74,14 +77,13 @@ const HomePage = () => {
                     font-size: 110%;
                 }
 
-                /* Your existing CSS for home-container and other elements remains the same */
                 .home-container {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     min-height: calc(100vh - 80px);
                     padding: 20px;
-                    font-family: 'Poppins', sans-serif;
+                    font-family: 'Times New Roman', Times, serif; /* Changed to Times New Roman */
                     color: ${purple};
                     overflow-x: hidden;
                     box-sizing: border-box;
@@ -132,10 +134,18 @@ const HomePage = () => {
                     font-size: clamp(2.7rem, 7vmin, 4.8rem);
                 }
 
-                .highlight-text {
-                    color: ${accentPink};
+                .gradient-text {
+                    background: linear-gradient(to right, ${purple}, ${accentPink});
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                }
+
+                .hero-highlight {
+                    color: ${purple};
                     font-weight: 700;
-                    text-shadow: 0 0 10px ${accentPink}, 0 0 20px rgba(229, 95, 154, 0.5);
+                    text-shadow: 0 0 10px ${purple}, 0 0 20px rgba(107, 78, 155, 0.5);
                     display: inline-block;
                     animation: pulseGlow 2s infinite alternate ease-in-out;
                 }
@@ -147,8 +157,8 @@ const HomePage = () => {
                 }
 
                 @keyframes pulseGlow {
-                    from { transform: scale(1); text-shadow: 0 0 10px ${accentPink}, 0 0 15px rgba(229, 95, 154, 0.5); }
-                    to { transform: scale(1.03); text-shadow: 0 0 15px ${accentPink}, 0 0 25px rgba(229, 95, 154, 0.8); }
+                    from { transform: scale(1); text-shadow: 0 0 10px ${purple}, 0 0 15px rgba(107, 78, 155, 0.5); }
+                    to { transform: scale(1.03); text-shadow: 0 0 15px ${purple}, 0 0 25px rgba(107, 78, 155, 0.8); }
                 }
 
                 .hero-cta {
@@ -166,6 +176,7 @@ const HomePage = () => {
                     letter-spacing: 1px;
                     align-self: flex-start;
                     text-decoration: none;
+                    font-family: 'Times New Roman', Times, serif; /* The new font style */
                 }
 
                 .hero-cta:hover {
@@ -225,9 +236,7 @@ const HomePage = () => {
                     width: 100%;
                     max-width: 1200px;
                     padding: 40px 20px;
-                    
-                    /* This ensures the products section starts below the fixed header */
-                    scroll-margin-top: 80px; /* Adjusted to match App.jsx header height */
+                    scroll-margin-top: 80px; 
                 }
 
                 .products-heading {
@@ -244,6 +253,7 @@ const HomePage = () => {
                     border-radius: 15px;
                     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
                     transition: transform 0.3s ease;
+                    cursor: pointer;
                 }
 
                 .products-image:hover {
@@ -251,7 +261,7 @@ const HomePage = () => {
                 }
                 
                 #menopause-section {
-                    scroll-margin-top: 80px; /* Add this to ensure the section isn't hidden by the fixed header */
+                    scroll-margin-top: 80px;
                 }
 
                 @media (max-width: 992px) {
