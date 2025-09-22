@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBed, faTint, faVenus, faBone } from '@fortawesome/free-solid-svg-icons';
+
+// Removed FontAwesome imports as symptoms are no longer present
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faBed, faTint, faVenus, faBone } from '@fortawesome/free-solid-svg-icons';
 
 const HomePage = () => {
     const [showContent, setShowContent] = useState(false);
-    const [showSymptoms, setShowSymptoms] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -14,107 +15,32 @@ const HomePage = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    useEffect(() => {
-        if (showContent) {
-            const symptomsTimer = setTimeout(() => {
-                setShowSymptoms(true);
-            }, 1000); 
-
-            return () => clearTimeout(symptomsTimer);
-        }
-    }, [showContent]);
+    // Removed showSymptoms state and its useEffect as symptoms are no longer present
 
     const purple = "#6b4e9b";
     const lightPurple = "#8a66b9";
     const accentPink = "#e55f9a";
 
-    const symptomsData = [
-        {
-            icon: faBed,
-            text: "Sleep disorders & fatigue",
-            stats: "Up to 61% of menopausal women report insomnia.",
-            animationClass: 'symptom-item-1'
-        },
-        {
-            icon: faTint,
-            text: "Hot flashes & night sweats",
-            stats: "Experienced by up to 80% of menopausal women.",
-            animationClass: 'symptom-item-2'
-        },
-        {
-            icon: faVenus,
-            text: "Vaginal dryness & discomfort",
-            stats: "Affects nearly 1 in 2 menopausal women.",
-            animationClass: 'symptom-item-3'
-        },
-        {
-            icon: faBone,
-            text: "Osteoporosis & joint pain",
-            stats: "Bone density loss accelerates after menopause.",
-            animationClass: 'symptom-item-4'
-        }
-    ];
+    // Removed symptomsData array as symptoms are no longer present
 
     return (
         <div className="home-container">
             <div className={`hero-content ${showContent ? 'visible' : ''}`}>
-                <div className="text-wrapper">
-                    <h1 className="hero-heading-left">
+                <div className="text-section-left"> {/* New wrapper for left-aligned text */}
+                    <h1 className="hero-heading-left smaller-text"> {/* Added smaller-text class */}
                         Because every woman deserves comfort, balance, and peace of mind...
                     </h1>
-                    <h1 className="hero-heading-right">
+                    <h1 className="hero-heading-right smaller-text"> {/* Added smaller-text class */}
                         <span className="highlight-text">Quatro for Her</span> is here to help you feel like yourself again<span className="heart-icon">💜</span>
                     </h1>
+                    <button className="hero-cta">Discover Our Solution</button>
                 </div>
-                <button className="hero-cta">Discover Our Solution</button>
-            </div>
-            
-            <div className={`issue-section ${showContent ? 'visible' : ''}`}>
-                <p className="issue-text">
-                    Menopause is a natural stage of life, but its symptoms don't have to control you.
-                </p>
-
-                <div className={`content-layout ${showSymptoms ? 'visible' : ''}`}>
-                    <div className="symptoms-column left-column">
-                        <div className={`symptom-item ${symptomsData[1].animationClass}`}>
-                            <FontAwesomeIcon icon={symptomsData[1].icon} className="symptom-icon" />
-                            <div className="symptom-details">
-                                <h3>{symptomsData[1].text}</h3>
-                                <p className="symptom-stats">{symptomsData[1].stats}</p>
-                            </div>
-                        </div>
-                        <div className={`symptom-item ${symptomsData[0].animationClass}`}>
-                            <FontAwesomeIcon icon={symptomsData[0].icon} className="symptom-icon" />
-                            <div className="symptom-details">
-                                <h3>{symptomsData[0].text}</h3>
-                                <p className="symptom-stats">{symptomsData[0].stats}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <img 
-                        src="/homemain.png" 
-                        alt="A woman stressing due to menopause symptoms" 
-                        className={`main-image`}
-                    /> 
-
-                    <div className="symptoms-column right-column">
-                        <div className={`symptom-item ${symptomsData[2].animationClass}`}>
-                            <FontAwesomeIcon icon={symptomsData[2].icon} className="symptom-icon" />
-                            <div className="symptom-details">
-                                <h3>{symptomsData[2].text}</h3>
-                                <p className="symptom-stats">{symptomsData[2].stats}</p>
-                            </div>
-                        </div>
-                        <div className={`symptom-item ${symptomsData[3].animationClass}`}>
-                            <FontAwesomeIcon icon={symptomsData[3].icon} className="symptom-icon" />
-                            <div className="symptom-details">
-                                <h3>{symptomsData[3].text}</h3>
-                                <p className="symptom-stats">{symptomsData[3].stats}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                <img 
+                    src="/homeintro.png" 
+                    alt="A serene woman introducing Quatro for Her" 
+                    className={`intro-image ${showContent ? 'visible' : ''}`} // New class for the intro image
+                /> 
             </div>
 
             <style>{`
@@ -128,17 +54,17 @@ const HomePage = () => {
                     color: ${purple};
                     overflow-x: hidden;
                     box-sizing: border-box;
+                    justify-content: center; /* Center content vertically */
                 }
 
                 .hero-content {
                     display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
+                    align-items: center; /* Align items vertically in the center */
+                    justify-content: center; /* Center items horizontally */
                     width: 100%;
                     max-width: 1200px;
                     padding: 40px;
-                    gap: 40px;
+                    gap: 60px; /* Increased gap for better separation */
                     opacity: 0;
                     transform: translateY(20px);
                     transition: opacity 1s ease-out, transform 1s ease-out;
@@ -149,33 +75,28 @@ const HomePage = () => {
                     transform: translateY(0);
                 }
 
-                .text-wrapper {
-                    width: 100%;
+                .text-section-left { /* New style for the left text column */
                     display: flex;
                     flex-direction: column;
-                    align-items: flex-start;
+                    align-items: flex-start; /* Align text to the left */
+                    gap: 20px; /* Space between headings and button */
+                    flex: 1; /* Allow text section to grow */
+                    max-width: 600px; /* Limit width for better readability */
                 }
 
-                .hero-heading-left {
-                    font-size: clamp(2rem, 8vmin, 5rem);
+                .hero-heading-left, .hero-heading-right {
                     font-weight: 600;
                     line-height: 1.3;
                     color: ${purple};
                     margin: 0;
                     white-space: pre-wrap;
                     width: 100%;
-                    text-align: left;
+                    text-align: left; /* Ensure text is left-aligned */
                 }
 
-                .hero-heading-right {
-                    font-size: clamp(2rem, 8vmin, 5rem);
-                    font-weight: 600;
-                    line-height: 1.3;
-                    color: ${purple};
-                    margin: 30px 0 0 15%;
-                    white-space: pre-wrap;
-                    text-align: left;
-                    width: 85%;
+                .hero-heading-left.smaller-text, 
+                .hero-heading-right.smaller-text {
+                    font-size: clamp(1.8rem, 4.5vmin, 3rem); /* Smaller font size */
                 }
                 
                 .highlight-text {
@@ -210,6 +131,7 @@ const HomePage = () => {
                     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
                     text-transform: uppercase;
                     letter-spacing: 1px;
+                    align-self: flex-start; /* Align button to the left */
                 }
 
                 .hero-cta:hover {
@@ -218,129 +140,53 @@ const HomePage = () => {
                     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
                 }
 
-                .issue-section {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
+                .intro-image { /* Style for the new image */
                     width: 100%;
-                    max-width: 1200px;
-                    text-align: center;
-                    padding: 20px;
+                    max-width: 550px; /* Made slightly bigger */
+                    height: auto;
+                    object-fit: contain; /* Ensure the image fits within its bounds */
                     opacity: 0;
-                    transform: translateY(20px);
+                    transform: scale(0.95);
                     transition: opacity 1s ease-out, transform 1s ease-out;
                 }
                 
-                .issue-section.visible {
+                .intro-image.visible {
                     opacity: 1;
-                    transform: translateY(0);
+                    transform: scale(1);
                 }
 
-                .issue-text {
-                    font-size: clamp(1.2rem, 3.5vmin, 2.5rem);
-                    font-weight: 500;
-                    color: ${lightPurple};
-                    margin: 40px 0;
-                    max-width: 800px;
-                    line-height: 1.5;
-                }
-
-                .content-layout {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 50px;
-                    width: 100%;
-                    opacity: 0;
-                    transition: opacity 1s ease-out;
-                }
-                
-                .content-layout.visible {
-                    opacity: 1;
-                }
-
-                .main-image {
-                    width: 100%;
-                    max-width: 400px;
-                    height: auto;
-                }
-                
-                .symptoms-column {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 30px;
-                    flex-basis: 30%;
-                }
-
-                .symptom-item {
-                    display: flex;
-                    align-items: flex-start;
-                    gap: 20px;
-                    padding: 20px;
-                    background-color: #f7f3fd;
-                    border-radius: 15px;
-                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-                    opacity: 0;
-                    transform: translateX(-50px);
-                    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-                }
-
-                .content-layout.visible .symptom-item-1 { transition-delay: 0.2s; transform: translateX(0); opacity: 1; }
-                .content-layout.visible .symptom-item-2 { transition-delay: 0s; transform: translateX(0); opacity: 1; }
-                .content-layout.visible .symptom-item-3 { transition-delay: 0.4s; transform: translateX(0); opacity: 1; }
-                .content-layout.visible .symptom-item-4 { transition-delay: 0.6s; transform: translateX(0); opacity: 1; }
-
-                .symptom-icon {
-                    font-size: 2rem;
-                    color: ${accentPink};
-                    min-width: 2rem;
-                }
-
-                .symptom-details {
-                    text-align: left;
-                }
-
-                .symptom-details h3 {
-                    font-size: 1.2rem;
-                    font-weight: 600;
-                    margin: 0 0 5px 0;
-                    color: ${purple};
-                }
-
-                .symptom-details p {
-                    font-size: 0.9rem;
-                    font-weight: 400;
-                    margin: 0;
-                    color: #555;
-                }
-                
-                @media (max-width: 768px) {
-                    .hero-heading-right {
-                        margin: 20px 0 0 0;
+                @media (max-width: 992px) { /* Adjust for medium screens */
+                    .hero-content {
+                        flex-direction: column; /* Stack text and image on smaller screens */
                         text-align: center;
-                        width: 100%;
-                    }
-
-                    .content-layout {
-                        flex-direction: column;
                         gap: 40px;
                     }
-
-                    .symptoms-column {
-                        width: 100%;
-                        flex-basis: auto;
-                        gap: 20px;
+                    .text-section-left {
+                        align-items: center; /* Center text and button on smaller screens */
+                        max-width: 100%;
                     }
-
-                    .symptom-item {
-                        transform: translateX(0);
-                        opacity: 1;
-                        transition: none;
+                    .hero-heading-left, .hero-heading-right {
+                        text-align: center;
                     }
-                    
-                    .content-layout.visible .symptom-item {
-                        transform: translateX(0);
-                        opacity: 1;
+                    .hero-cta {
+                        align-self: center; /* Center button on smaller screens */
+                    }
+                    .intro-image {
+                        max-width: 450px; /* Adjust image size for smaller screens */
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .hero-heading-left.smaller-text, 
+                    .hero-heading-right.smaller-text {
+                        font-size: clamp(1.5rem, 5vmin, 2.5rem); /* Even smaller on mobile */
+                    }
+                    .hero-cta {
+                        padding: 15px 30px;
+                        font-size: 1rem;
+                    }
+                    .intro-image {
+                        max-width: 350px; /* Further adjust image size for mobile */
                     }
                 }
             `}</style>
