@@ -126,6 +126,7 @@ function FAQ() {
           font-weight: bold; 
           flex-grow: 1;
           margin-right: 15px;
+          font-style: italic;
         }
 
         .faq-arrow-icon {
