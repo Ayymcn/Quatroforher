@@ -17,6 +17,7 @@ const HomePage = () => {
 
     return (
         <div className="home-container">
+            {/* Hero Section */}
             <div className={`hero-content ${showContent ? 'visible' : ''}`}>
                 <div className="text-section-left">
                     <h1 className="hero-heading-left bigger-text">
@@ -25,7 +26,7 @@ const HomePage = () => {
                     <h1 className="hero-heading-right bigger-text">
                         <span className="highlight-text">Quatro for Her</span> is here to help you feel like yourself again<span className="heart-icon">💜</span>
                     </h1>
-                    <button className="hero-cta">Discover Our Solution</button>
+                    <a href="#products-section" className="hero-cta">Discover Our Solution</a>
                 </div>
                 
                 <img 
@@ -34,9 +35,26 @@ const HomePage = () => {
                     className={`intro-image ${showContent ? 'visible' : ''}`}
                 /> 
             </div>
+            
+            <hr className="divider"/>
+
+            {/* Products Section */}
+            <div id="products-section" className="products-container">
+                <h2 className="products-heading">Our Products</h2>
+                <img 
+                    src="/products.png" 
+                    alt="A display of Quatro for Her products" 
+                    className="products-image"
+                />
+            </div>
+            
 
             <style>{`
-                /* Apply base font size increase to the entire page */
+                /* Add smooth scrolling to the entire page */
+                html {
+                    scroll-behavior: smooth;
+                }
+
                 body {
                     font-size: 110%; 
                 }
@@ -95,7 +113,6 @@ const HomePage = () => {
 
                 .hero-heading-left.bigger-text, 
                 .hero-heading-right.bigger-text {
-                    /* Adjusted font-size to be slightly larger to account for the body change */
                     font-size: clamp(2.7rem, 7vmin, 4.8rem); 
                 }
                 
@@ -132,12 +149,13 @@ const HomePage = () => {
                     text-transform: uppercase;
                     letter-spacing: 1px;
                     align-self: flex-start;
+                    text-decoration: none; 
                 }
 
                 .hero-cta:hover {
                     background-color: ${lightPurple};
                     transform: translateY(-3px);
-                    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+                    box-shadow: 8px 25px rgba(0, 0, 0, 0.3);
                 }
 
                 .intro-image {
@@ -171,6 +189,46 @@ const HomePage = () => {
                         transform: scale(1);
                         box-shadow: 0 0 10px rgba(229, 95, 154, 0.3); 
                     }
+                }
+
+                /* New Products Section CSS */
+                .divider {
+                    width: 80%;
+                    max-width: 1200px;
+                    border: 0;
+                    height: 1px;
+                    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(107, 78, 155, 0.75), rgba(0, 0, 0, 0));
+                    margin: 40px 0;
+                }
+
+                .products-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    width: 100%;
+                    max-width: 1200px;
+                    padding: 40px 20px;
+                }
+
+                .products-heading {
+                    font-size: clamp(2rem, 5vmin, 3.5rem);
+                    font-weight: 700;
+                    margin-bottom: 30px;
+                    color: ${purple};
+                }
+
+                .products-image {
+                    width: 100%;
+                    max-width: 800px;
+                    height: auto;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease;
+                }
+
+                .products-image:hover {
+                    transform: scale(1.02);
                 }
 
                 @media (max-width: 992px) {
@@ -210,6 +268,9 @@ const HomePage = () => {
                     .intro-image {
                         max-width: 250px;
                         height: 250px;
+                    }
+                    .products-container {
+                        padding: 20px;
                     }
                 }
             `}</style>
