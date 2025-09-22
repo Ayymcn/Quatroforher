@@ -80,7 +80,7 @@ function AboutUs() {
 
   return (
     <div className="about-us-container">
-      <div className="animated-background-wrapper"></div>
+      
 
       <div className="about-us-content">
         <div className="about-us-logo">
@@ -155,24 +155,7 @@ function AboutUs() {
           overflow-x: hidden; 
         }
         
-        .animated-background-wrapper {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100vh;
-          overflow: hidden;
-          z-index: -1;
-          background: linear-gradient(
-            -45deg,
-            #d6c2e2,
-            #ffc0cb,
-            #d6c2e2,
-            #ffc0cb
-          );
-          background-size: 400% 400%;
-          animation: fluidBackground 20s ease-in-out infinite;
-        }
+        
 
         @keyframes fluidBackground {
             0% { background-position: 0% 50%; }

@@ -64,12 +64,12 @@ function FAQ() {
 
       <style>{`
         .faq-page-container {
-          max-width: 1400px;
-          margin: 100px auto 80px;
-          padding: 0 20px;
-          font-family: "Times New Roman", Times, serif;
-          color: #333;
-        }
+  max-width: 800px; /* Change this value to adjust the width */
+  margin: 100px auto 80px;
+  padding: 0 20px;
+  font-family: "Times New Roman", Times, serif;
+  color: #333;
+}
 
         .faq-header-content {
           text-align: center;

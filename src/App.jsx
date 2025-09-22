@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import ScrollToTop from "./components/ScrollToTop";
 import HashLinkScroll from "./components/HashLinkScroll";
 import ShopNow from "./pages/ShopNow";
+import Footer from "./components/Footer"; // Import the new Footer component
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -57,7 +58,7 @@ function App() {
             <li><Link to="/" onClick={handleScrollToTop}>Home</Link></li>
             <li><Link to="/#menopause-section">Menopause</Link></li>
             <li><Link to="/about" onClick={handleScrollToTop}>About Us</Link></li>
-             <li><Link to="/shop-now" onClick={handleScrollToTop}>Shop Now</Link></li> 
+            <li><Link to="/shop-now" onClick={handleScrollToTop}>Shop Now</Link></li> 
             <li><Link to="/faq" onClick={handleScrollToTop}>FAQ</Link></li>
             <li><Link to="/contact" className="contact-btn" onClick={handleScrollToTop}>Contact Us</Link></li>
           </ul>
@@ -91,6 +92,7 @@ function App() {
             <li><Link to="/" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Home</Link></li>
             <li><Link to="/#menopause-section" onClick={() => setMenuOpen(false)}>Menopause</Link></li>
             <li><Link to="/about" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>About Us</Link></li>
+            <li><Link to="/shop-now" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Shop Now</Link></li> {/* Add Shop Now to mobile nav */}
             <li><Link to="/faq" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>FAQ</Link></li>
             <li><Link to="/contact" className="contact-btn" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Contact Us</Link></li>
             <li>
@@ -111,17 +113,23 @@ function App() {
         </div>
       )}
 
-      <main className="main-content">
-        <ScrollToTop />
-        <HashLinkScroll />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/shop-now" element={<ShopNow />} />
-        </Routes>
-      </main>
+      {/* New flexbox container to ensure the footer is always at the bottom */}
+      <div className="page-wrapper">
+        <main className="main-content">
+          <ScrollToTop />
+          <HashLinkScroll />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/shop-now" element={<ShopNow />} />
+          </Routes>
+        </main>
+
+        {/* The Footer component is placed here to appear on all pages */}
+        <Footer />
+      </div>
 
       <style>{`
         body {
@@ -349,7 +357,17 @@ function App() {
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .main-content { padding-top: 100px; text-align: center; }
+        .page-wrapper {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+
+        .main-content {
+          flex-grow: 1;
+          padding-top: 100px;
+          text-align: center;
+        }
 
         @media (max-width: 768px) {
           .desktop-nav { display: none; }
