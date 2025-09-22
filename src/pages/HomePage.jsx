@@ -36,12 +36,17 @@ const HomePage = () => {
             </div>
 
             <style>{`
+                /* Apply base font size increase to the entire page */
+                body {
+                    font-size: 110%; 
+                }
+
                 .home-container {
                     display: flex;
                     flex-direction: column;
-                    align-items: center; /* Centering the hero-content */
+                    align-items: center; 
                     min-height: calc(100vh - 80px);
-                    padding: 20px; /* Reintroduced padding for a safe zone */
+                    padding: 20px;
                     font-family: 'Poppins', sans-serif;
                     color: ${purple};
                     overflow-x: hidden;
@@ -55,8 +60,8 @@ const HomePage = () => {
                     align-items: center;
                     justify-content: flex-start;
                     width: 100%; 
-                    max-width: 1200px; /* Restored max-width to a reasonable size */
-                    padding: 40px; /* Reintroduced padding */
+                    max-width: 1200px;
+                    padding: 40px; 
                     gap: 60px;
                     opacity: 0;
                     transform: translateY(20px);
@@ -90,7 +95,8 @@ const HomePage = () => {
 
                 .hero-heading-left.bigger-text, 
                 .hero-heading-right.bigger-text {
-                    font-size: clamp(2.5rem, 6.5vmin, 4.5rem); 
+                    /* Adjusted font-size to be slightly larger to account for the body change */
+                    font-size: clamp(2.7rem, 7vmin, 4.8rem); 
                 }
                 
                 .highlight-text {
@@ -195,7 +201,7 @@ const HomePage = () => {
                 @media (max-width: 768px) {
                     .hero-heading-left.bigger-text, 
                     .hero-heading-right.bigger-text {
-                        font-size: clamp(2.2rem, 7vmin, 3.5rem); 
+                        font-size: clamp(2.5rem, 8vmin, 4rem); 
                     }
                     .hero-cta {
                         padding: 15px 30px;
