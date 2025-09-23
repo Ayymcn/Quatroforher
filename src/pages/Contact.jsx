@@ -1,30 +1,35 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaEnvelope, FaMapMarkerAlt, FaInstagram } from 'react-icons/fa';
-import emailjs from '@emailjs/browser'; // Import the emailjs library
+import emailjs from '@emailjs/browser';
 
 function Contact() {
   const { t } = useTranslation();
-  const form = useRef(); // Use a ref to access the form DOM element
+  const form = useRef();
   const purple = "#6b4e9b";
   const lightPurple = "#8b6bc3";
   const darkPurple = "#4a3a63";
 
+  // Replace with your actual credentials from the EmailJS dashboard
+  const SERVICE_ID = 'YOUR_SERVICE_ID';
+  const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+
+  useEffect(() => {
+    // Initialize EmailJS with your Public Key
+    emailjs.init(PUBLIC_KEY);
+  }, [PUBLIC_KEY]); // Dependency array to run only once
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    // These are the credentials you get from EmailJS
-    const SERVICE_ID = 'service_smq6jk4';
-    const TEMPLATE_ID = 'template_85bumee';
-    const PUBLIC_KEY = 'agf0u0mUdlgtLDmmg';
-
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current)
       .then((result) => {
         console.log(result.text);
-        alert(t("contact.form.alert")); // Show success message
+        alert(t("contact.form.alert"));
       }, (error) => {
         console.log(error.text);
-        alert('Failed to send the message, please try again later.'); // Show a different alert for failure
+        alert('Failed to send the message, please try again later.');
       });
   };
 
@@ -109,7 +114,7 @@ function Contact() {
         </div>
       </div>
 
-      {/* Inline styles for components */}
+      {/* Inline styles */}
       <style>{`
         .contact-page-container { padding-top: 0; padding-bottom: 80px; font-family: "Times New Roman", Times, serif; color: #333; display: flex; flex-direction: column; align-items: center; background-color: transparent; }
         .contact-header-section { text-align: center; margin-bottom: 30px; max-width: 700px; padding: 0 20px; margin-top: 50px; }
