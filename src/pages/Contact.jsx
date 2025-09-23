@@ -11,9 +11,9 @@ function Contact() {
   const darkPurple = "#4a3a63";
 
   // Replace with your actual credentials from the EmailJS dashboard
-  const SERVICE_ID = 'YOUR_SERVICE_ID';
-  const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-  const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+  const SERVICE_ID = 'service_smq6jk4';
+  const TEMPLATE_ID = 'template_6votlsp';
+  const PUBLIC_KEY = 'agf0u0mUdlgtLDmmg';
 
   useEffect(() => {
     // Initialize EmailJS with your Public Key
