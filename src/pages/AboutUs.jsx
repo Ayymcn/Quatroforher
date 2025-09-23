@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
+// 1. Import the useTranslation hook
+import { useTranslation } from "react-i18next";
 
 function AboutUs() {
   const [showTitle, setShowTitle] = useState(false);
@@ -45,7 +47,7 @@ function AboutUs() {
           const product2TextTimer = setTimeout(() => {
             setShowProduct2Text(true);
           }, 2000); // 2s delay after the title
-          
+
           // Clean up the timers created by the observer
           return () => {
             clearTimeout(productsTitleTimer);
@@ -77,10 +79,12 @@ function AboutUs() {
   }, [showProductsTitle]); // Rerun effect if showProductsTitle changes (to prevent re-observing)
 
   const purple = "#6b4e9b";
+  // 2. Call the useTranslation hook to get the 't' function
+  const { t } = useTranslation();
 
   return (
     <div className="about-us-container">
-      
+
 
       <div className="about-us-content">
         <div className="about-us-logo">
@@ -88,56 +92,61 @@ function AboutUs() {
         </div>
         <div className="about-us-text">
           <div className={`about-us-title-slide ${showTitle ? 'visible' : ''}`}>
-            <h1 className="about-us-heading">What is Quatro For Her?</h1>
+            {/* 3. Replace hardcoded text with translation key */}
+            <h1 className="about-us-heading">{t("about.heading")}</h1>
           </div>
           <div className={`about-us-intro-slide ${showIntro ? 'visible' : ''}`}>
+            {/* 4. Replace hardcoded text with translation key */}
             <p className="about-us-paragraph">
-              Quatro For Her was born from a simple yet powerful mission: to bring comfort, balance, and confidence back to women navigating the challenges of menopause. Our unique natural solution combines capsules to support hormonal and gut balance with a vaginal cream to restore comfort and intimacy — all without hormones, and with safety in mind for women, including those with a history of hormone-dependent cancers. We believe every woman deserves to feel like herself again, naturally.
+              {t("about.intro")}
             </p>
           </div>
         </div>
       </div>
-      
+
       {/* Attach the ref to this container to observe its position */}
       <div className="products-section-container" ref={productsSectionRef}>
         <div className={`products-title-slide ${showProductsTitle ? 'visible' : ''}`}>
-            <h2 className="products-heading">Our Products:</h2>
-            <p className="products-intro-paragraph">
-                Our revolutionary solution is a two-part system designed to address menopause symptoms from both the inside and out.
-            </p>
+          {/* 5. Replace hardcoded text with translation key */}
+          <h2 className="products-heading">{t("about.products.title")}</h2>
+          <p className="products-intro-paragraph">
+            {t("about.products.intro")}
+          </p>
         </div>
 
         <div className="products-row">
-            <div className={`product-item ${showProduct1Image ? 'visible' : ''}`}>
-                <div className="product-image-container">
-                    <img src="/product1.png" alt="Quatro Capsules" className="product-image"/>
-                </div>
+          <div className={`product-item ${showProduct1Image ? 'visible' : ''}`}>
+            <div className="product-image-container">
+              <img src="/product1.png" alt="Quatro Capsules" className="product-image"/>
             </div>
-            <div className={`product-item ${showProduct1Text ? 'visible' : ''}`}>
-                <div className="product-text-container">
-                    <ul>
-                        <li>• Support natural hormonal balance without synthetic hormones</li>
-                        <li>• Enriched with plant extracts to reduce hot flashes & night sweats</li>
-                        <li>• Contains prebiotics to restore intestinal microbiome</li>
-                        <li>• Promotes better sleep, mood, and energy</li>
-                    </ul>
-                </div>
+          </div>
+          <div className={`product-item ${showProduct1Text ? 'visible' : ''}`}>
+            <div className="product-text-container">
+              <ul>
+                {/* 6. Replace hardcoded text with translation keys */}
+                <li>{t("about.products.capsules.bullet1")}</li>
+                <li>{t("about.products.capsules.bullet2")}</li>
+                <li>{t("about.products.capsules.bullet3")}</li>
+                <li>{t("about.products.capsules.bullet4")}</li>
+              </ul>
             </div>
-            <div className={`product-item product-item-2 ${showProduct2Image ? 'visible' : ''}`}>
-                <div className="product-image-container">
-                    <img src="/product2.png" alt="Quatro Vaginal Cream" className="product-image"/>
-                </div>
+          </div>
+          <div className={`product-item product-item-2 ${showProduct2Image ? 'visible' : ''}`}>
+            <div className="product-image-container">
+              <img src="/product2.png" alt="Quatro Vaginal Cream" className="product-image"/>
             </div>
-            <div className={`product-item ${showProduct2Text ? 'visible' : ''}`}>
-                <div className="product-text-container">
-                    <ul>
-                        <li>• Provides fast relief from dryness, itching, and discomfort</li>
-                        <li>• Restores and maintains the natural vaginal flora</li>
-                        <li>• Improves hydration, elasticity, and comfort</li>
-                        <li>• Designed for women who want a gentle, hormone-free solution</li>
-                    </ul>
-                </div>
+          </div>
+          <div className={`product-item ${showProduct2Text ? 'visible' : ''}`}>
+            <div className="product-text-container">
+              <ul>
+                {/* 7. Replace hardcoded text with translation keys */}
+                <li>{t("about.products.cream.bullet1")}</li>
+                <li>{t("about.products.cream.bullet2")}</li>
+                <li>{t("about.products.cream.bullet3")}</li>
+                <li>{t("about.products.cream.bullet4")}</li>
+              </ul>
             </div>
+          </div>
         </div>
       </div>
 
@@ -152,10 +161,9 @@ function AboutUs() {
           color: #333;
           position: relative;
           z-index: 1;
-          overflow-x: hidden; 
+          overflow-x: hidden;
         }
-        
-        
+
 
         @keyframes fluidBackground {
             0% { background-position: 0% 50%; }
@@ -189,7 +197,7 @@ function AboutUs() {
           height: auto;
           animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -205,7 +213,7 @@ function AboutUs() {
           flex-direction: column;
           align-items: center;
         }
-        
+
         .about-us-title-slide,
         .about-us-intro-slide {
           opacity: 0;
@@ -224,7 +232,7 @@ function AboutUs() {
         .about-us-title-slide {
           transition-delay: 0.5s;
         }
-        
+
         .about-us-intro-slide {
           transition-delay: 1s;
         }
@@ -241,7 +249,7 @@ function AboutUs() {
           color: #555;
           line-height: 1.6;
         }
-        
+
         .products-section-container {
             width: 100%;
             max-width: 1400px;
@@ -256,7 +264,7 @@ function AboutUs() {
             font-weight: bold;
             margin-bottom: 10px;
         }
-        
+
         .products-intro-paragraph {
             font-size: 1.1rem;
             color: #555;
@@ -273,14 +281,14 @@ function AboutUs() {
             gap: 20px;
             padding: 0 50px;
         }
-        
+
         .product-item,
         .products-title-slide { /* Apply transitions to all animated elements */
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        
+
         .product-item.visible,
         .products-title-slide.visible {
             opacity: 1;
@@ -302,13 +310,13 @@ function AboutUs() {
             max-width: 400px;
             text-align: left;
         }
-        
+
         .product-text-container ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
-        
+
         .product-text-container li {
             margin-bottom: 8px;
             color: #444;
@@ -339,7 +347,7 @@ function AboutUs() {
             margin-top: -60px;
           }
         }
-        
+
         @media (max-width: 768px) {
           .about-us-container {
             overflow-x: hidden;

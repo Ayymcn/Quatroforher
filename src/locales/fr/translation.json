@@ -99,5 +99,25 @@
       "title": "Où nous trouver",
       "paragraph": "Trouvez notre emplacement sur la carte ci-dessous. Nous sommes situés au cœur de Bab Ezzouar."
     }
+  },
+  "about": {
+    "heading": "Qu'est-ce que Quatro For Her?",
+    "intro": "Quatro For Her est né d'une mission simple mais puissante : ramener le confort, l'équilibre et la confiance aux femmes qui traversent les défis de la ménopause. Notre solution naturelle unique combine des capsules pour soutenir l'équilibre hormonal et intestinal avec une crème vaginale pour restaurer le confort et l'intimité — le tout sans hormones, et en toute sécurité pour les femmes, y compris celles ayant des antécédents de cancers hormono-dépendants. Nous croyons que chaque femme mérite de se sentir à nouveau elle-même, naturellement.",
+    "products": {
+      "title": "Nos produits :",
+      "intro": "Notre solution révolutionnaire est un système en deux parties conçu pour traiter les symptômes de la ménopause de l'intérieur et de l'extérieur.",
+      "capsules": {
+        "bullet1": "• Soutient l'équilibre hormonal naturel sans hormones synthétiques",
+        "bullet2": "• Enrichi en extraits de plantes pour réduire les bouffées de chaleur et les sueurs nocturnes",
+        "bullet3": "• Contient des prébiotiques pour restaurer le microbiome intestinal",
+        "bullet4": "• Favorise un meilleur sommeil, humeur et énergie"
+      },
+      "cream": {
+        "bullet1": "• Soulage rapidement la sécheresse, les démangeaisons et l'inconfort",
+        "bullet2": "• Restaure et maintient la flore vaginale naturelle",
+        "bullet3": "• Améliore l'hydratation, l'élasticité et le confort",
+        "bullet4": "• Conçu pour les femmes qui veulent une solution douce et sans hormones"
+      }
+    }
   }
 }
