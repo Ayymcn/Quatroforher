@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { FaGlobe } from 'react-icons/fa';
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
@@ -8,14 +8,17 @@ import HomePage from "./pages/HomePage";
 import ScrollToTop from "./components/ScrollToTop";
 import HashLinkScroll from "./components/HashLinkScroll";
 import ShopNow from "./pages/ShopNow";
-import Footer from "./components/Footer"; // Import the new Footer component
+import Footer from "./components/Footer";
 import "./i18n";
 import { useTranslation } from "react-i18next";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [mobileLangOpen, setMobileLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const purple = "#6b4e9b";
   const lightPurple = "#8b6bc3";
@@ -29,20 +32,22 @@ function App() {
   };
 
   const langRef = useRef(null);
+  const mobileLangRef = useRef(null);
 
-useEffect(() => {
-  function handleClickOutside(event) {
-    if (langRef.current && !langRef.current.contains(event.target)) {
-      setLangOpen(false);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (langRef.current && !langRef.current.contains(event.target)) {
+        setLangOpen(false);
+      }
+      if (mobileLangRef.current && !mobileLangRef.current.contains(event.target)) {
+        setMobileLangOpen(false);
+      }
     }
-  }
-
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
-
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,13 +58,20 @@ useEffect(() => {
         setScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  
+  // Reusable function to handle language change and navigation
+  const handleLanguageChange = (lng) => {
+    i18n.changeLanguage(lng);
+    setLangOpen(false);
+    setMobileLangOpen(false);
+    setMenuOpen(false);
+    navigate('/');
+  };
 
   return (
     <>
@@ -83,16 +95,18 @@ useEffect(() => {
           </ul>
         </nav>
 
+        {/* Desktop Language Selector */}
         <div className="lang-container" ref={langRef}>
           <button className="desktop-lang-btn" onClick={() => setLangOpen(!langOpen)}>
             <FaGlobe className="lang-icon" />
           </button>
           {langOpen && (
             <ul className="lang-dropdown">
-  <li onClick={() => { i18n.changeLanguage("en"); setLangOpen(false); }}>English</li>
-<li onClick={() => { i18n.changeLanguage("fr"); setLangOpen(false); }}>French</li>
-<li onClick={() => { i18n.changeLanguage("ar"); setLangOpen(false); }}>Arabic</li>
-</ul>
+              {/* Updated onClick handler to navigate */}
+              <li onClick={() => handleLanguageChange("en")}>English</li>
+              <li onClick={() => handleLanguageChange("fr")}>French</li>
+              <li onClick={() => handleLanguageChange("ar")}>Arabic</li>
+            </ul>
           )}
         </div>
 
@@ -111,19 +125,22 @@ useEffect(() => {
             <li><Link to="/" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Home</Link></li>
             <li><Link to="/#menopause-section" onClick={() => setMenuOpen(false)}>Menopause</Link></li>
             <li><Link to="/about" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>About Us</Link></li>
-            <li><Link to="/shop-now" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Shop Now</Link></li> {/* Add Shop Now to mobile nav */}
+            <li><Link to="/shop-now" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Shop Now</Link></li>
             <li><Link to="/faq" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>FAQ</Link></li>
             <li><Link to="/contact" className="contact-btn" onClick={() => { setMenuOpen(false); handleScrollToTop(); }}>Contact Us</Link></li>
+            
+            {/* Mobile Language Selector */}
             <li>
-              <div className="lang-container">
-                <button className="mobile-lang-btn" onClick={() => setLangOpen(!langOpen)}>
+              <div className="lang-container" ref={mobileLangRef}>
+                <button className="mobile-lang-btn" onClick={() => setMobileLangOpen(!mobileLangOpen)}>
                   <FaGlobe className="lang-icon" />
                 </button>
-                {langOpen && (
+                {mobileLangOpen && (
                   <ul className="lang-dropdown">
-                    <li>English</li>
-                    <li>French</li>
-                    <li>Arabic</li>
+                    {/* Updated onClick handler to navigate */}
+                    <li onClick={() => handleLanguageChange("en")}>English</li>
+                    <li onClick={() => handleLanguageChange("fr")}>French</li>
+                    <li onClick={() => handleLanguageChange("ar")}>Arabic</li>
                   </ul>
                 )}
               </div>
@@ -132,7 +149,6 @@ useEffect(() => {
         </div>
       )}
 
-      {/* New flexbox container to ensure the footer is always at the bottom */}
       <div className="page-wrapper">
         <main className="main-content">
           <ScrollToTop />
@@ -145,8 +161,6 @@ useEffect(() => {
             <Route path="/shop-now" element={<ShopNow />} />
           </Routes>
         </main>
-
-        {/* The Footer component is placed here to appear on all pages */}
         <Footer />
       </div>
 
@@ -238,7 +252,7 @@ useEffect(() => {
           text-decoration: none;
           color: ${purple};
           font-weight: bold;
-          font-size: 1.1rem; /* Consistent font size for all nav links */
+          font-size: 1.1rem;
           position: relative;
           transition: all 0.3s ease;
         }
@@ -349,7 +363,7 @@ useEffect(() => {
         .mobile-overlay li { margin: 20px 0; }
 
         .mobile-overlay a {
-          font-size: 1.5rem; /* Set a specific, consistent font size for mobile links */
+          font-size: 1.5rem;
           text-decoration: none;
           color: ${purple};
           font-weight: bold;
